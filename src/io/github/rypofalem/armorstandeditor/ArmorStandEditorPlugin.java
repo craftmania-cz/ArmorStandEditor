@@ -1,5 +1,6 @@
 package io.github.rypofalem.armorstandeditor;
 
+import com.wasteofplastic.askyblock.ASkyBlock;
 import io.github.rypofalem.armorstandeditor.language.Language;
 import io.github.rypofalem.armorstandeditor.protection.*;
 
@@ -67,6 +68,10 @@ public class ArmorStandEditorPlugin extends JavaPlugin{
 		if(isPluginEnabled("Residence")){
 			Plugin res = getServer().getPluginManager().getPlugin("Residence");
 			if(res instanceof Residence) addProtection(new ResidenceProtection((Residence)res));
+		}
+		if(isPluginEnabled("ASkyBlock")){
+			Plugin askyblock = getServer().getPluginManager().getPlugin("ASkyBlock");
+			if(askyblock instanceof ASkyBlock) addProtection(new ASkyblockProtection((ASkyBlock)askyblock));
 		}
 	}
 
