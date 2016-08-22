@@ -1,6 +1,5 @@
 package io.github.rypofalem.armorstandeditor;
 
-import io.github.rypofalem.armorstandeditor.menu.EquipmentMenu;
 import io.github.rypofalem.armorstandeditor.menu.Menu;
 import io.github.rypofalem.armorstandeditor.modes.AdjustmentMode;
 import io.github.rypofalem.armorstandeditor.modes.ArmorStandData;
@@ -31,7 +30,6 @@ public class PlayerEditor {
 	boolean cancelMenuOpen = false;
 	int uncancelTaskID =0;
 	ArmorStand target;
-	EquipmentMenu equipMenu;
 
 	public PlayerEditor(UUID uuid, ArmorStandEditorPlugin plugin){
 		this.uuid =uuid;
@@ -109,8 +107,6 @@ public class PlayerEditor {
 			break;
 			case DISABLESLOTS: toggleDisableSlots(armorStand);
 			break;
-			case EQUIPMENT: openEquipment(armorStand);
-			break;
 			case TARGET: setTarget(armorStand);
 			break;
 			case NONE: sendMessage("nomode", null); break;
@@ -118,11 +114,6 @@ public class PlayerEditor {
 		}else{
 			cannotBuildMessage();
 		}
-	}
-
-	private void openEquipment(ArmorStand armorStand) {
-		equipMenu = new EquipmentMenu(this, armorStand);
-		equipMenu.open();
 	}
 
 	public void reverseEditArmorStand(ArmorStand armorStand){
