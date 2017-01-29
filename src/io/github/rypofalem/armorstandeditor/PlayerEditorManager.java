@@ -3,8 +3,10 @@ package io.github.rypofalem.armorstandeditor;
 import io.github.rypofalem.armorstandeditor.menu.ASEHolder;
 import io.github.rypofalem.armorstandeditor.menu.Menu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.List;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -19,11 +21,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.util.Vector;
 
 //Manages PlayerEditors and Player Events related to editing armorstands
 public class PlayerEditorManager implements Listener{
@@ -218,4 +221,44 @@ public class PlayerEditorManager implements Listener{
 	public ASEHolder getPluginHolder() {
 		return pluginHolder;
 	}
+
+    @EventHandler (priority = EventPriority.LOW, ignoreCancelled=true)
+    public void onSwitchHands(PlayerSwapHandItemsEvent event){
+        if(plugin.editTool != event.getOffHandItem().getType()) return; //event assumes they are already switched
+        event.setCancelled(true);
+        Player player = event.getPlayer();
+        getPlayerEditor(event.getPlayer().getUniqueId()).setTarget(getTargets(player));
+    }
+
+    ArrayList<ArmorStand> getTargets(Player player){
+        Location eyeLaser = player.getEyeLocation();
+        Vector direction = player.getLocation().getDirection();
+        ArrayList<ArmorStand> armorStands = new ArrayList<>();
+
+        final double STEPSIZE = .5;
+        final Vector STEP = direction.multiply(STEPSIZE);
+        final double RANGE = 10;
+        final double LASERRADIUS = .3;
+        List<Entity> nearbyEntities = player.getNearbyEntities(RANGE, RANGE, RANGE);
+        if(nearbyEntities == null || nearbyEntities.isEmpty()) return null;
+
+        for(double i = 0; i<RANGE; i+= STEPSIZE){
+            List<Entity> nearby = (List<Entity>) player.getWorld().getNearbyEntities(eyeLaser, LASERRADIUS, LASERRADIUS, LASERRADIUS);
+            if(!nearby.isEmpty()){
+                boolean endLoop = false;
+                for(Entity e : nearby){
+                    if(e instanceof ArmorStand){
+                        armorStands.add((ArmorStand)e);
+                        endLoop = true;
+                    }
+                }
+                if(endLoop) break;
+
+            }
+            if(eyeLaser.getBlock().getType().isSolid()) break;
+            eyeLaser.add(STEP);
+        }
+
+        return armorStands;
+    }
 }

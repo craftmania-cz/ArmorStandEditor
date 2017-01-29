@@ -32,6 +32,7 @@ setmode:
   target: Target
   copy: Copy
   paste: Paste
+  reset: Reset Pose
 setaxis: 
   msg: Setting axis to <x>.
   x: X
@@ -53,6 +54,10 @@ copied:
   msg: ArmorStand state copied to slot <x>.
 pasted: 
   msg: ArmorStand state pasted from slot <x>.
+target:
+  msg: ArmorStand target locked.
+notarget:
+  msg: ArmorStand target unlocked.
 
 #warn
 cantedit:
@@ -152,10 +157,6 @@ rotate:
   msg: Rotate
   description:
     msg: Rotate the entire armorstand
-target: 
-  msg: Target
-  description:
-    msg: Coming soon!
 copy: 
   msg: Copy
   description:
@@ -168,7 +169,10 @@ copyslot:
   msg: Copy Slot <x>
   description:
     msg: Select a slot to store settings
-
+reset:
+  msg: Reset Pose
+  description:
+    msg: Reset bodypart position to default
 #Equipment Menu
 equiptitle: 
   msg: ArmorStand Equipment

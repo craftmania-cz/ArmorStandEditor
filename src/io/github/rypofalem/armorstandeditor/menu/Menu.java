@@ -28,9 +28,9 @@ public class Menu {
 	private void fillInventory() {
 		menuInv.clear();
 		ItemStack xAxis= null, yAxis= null, zAxis= null, coarseAdj= null, fineAdj= null, rotate = null, place = null,
-				headPos= null, target = null,
-				rightArmPos= null, bodyPos= null, leftArmPos= null, showArms= null, visibility= null, size= null,
-				rightLegPos= null, equipment = null, leftLegPos= null, disableSlots = null, gravity= null, plate= null, copy= null, paste= null,
+				headPos= null,
+				rightArmPos= null, bodyPos= null, leftArmPos= null, reset = null, showArms= null, visibility= null, size= null,
+				rightLegPos= null, equipment = null, leftLegPos= null, disableSlots= null, gravity= null, plate= null, copy= null, paste= null,
 				slot1= null, slot2= null, slot3= null, slot4= null, slot5= null, slot6= null, slot7= null, slot8= null, slot9 = null;
 
 		if(pe.getPlayer().hasPermission("asedit.head") ||
@@ -86,6 +86,11 @@ public class Menu {
 					"rightarm", "mode rightarm");
 		}
 
+        if(pe.getPlayer().hasPermission("asedit.reset")){
+            reset = createIcon( new ItemStack(Material.LEVER),
+                    "reset", "mode reset");
+        }
+
 		if(pe.getPlayer().hasPermission("asedit.showarms")){
 			showArms = createIcon( new ItemStack(Material.STICK),
 					"showarms", "mode showarms");
@@ -131,9 +136,6 @@ public class Menu {
 					"rotate", "mode rotate");
 		}
 
-		target = createIcon(new ItemStack(Material.END_CRYSTAL, 1),
-				"target", "mode target");
-
 		if(pe.getPlayer().hasPermission("asedit.equipment")){
 			equipment = createIcon(new ItemStack(Material.CHEST, 1),
 					"equipment", "mode equipment");
@@ -173,15 +175,15 @@ public class Menu {
 			slot9 = createIcon( new ItemStack(Material.DOUBLE_PLANT, 9, (short) 1),
 					"copyslot","slot 9", "9");
 		}
-		ItemStack[] items = 
-			{xAxis, yAxis, zAxis, null, coarseAdj, fineAdj, null, rotate, place,
-					null, headPos, null, null, null, null, null, null, target,
-					rightArmPos, bodyPos, leftArmPos, null, null, null, showArms, visibility, size,
-					rightLegPos, equipment, leftLegPos, null, null, null, null, gravity, plate,
-					null, null, null, null, copy, paste, null, null, null,
-					slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9
-			};
-		menuInv.setContents(items);
+        ItemStack[] items =
+                {xAxis, yAxis, zAxis, null, coarseAdj, fineAdj, null, rotate, place,
+                        null, headPos, null, null, null, null, null, null, null,
+                        rightArmPos, bodyPos, leftArmPos, reset, null, null, showArms, visibility, size,
+                        rightLegPos, null, leftLegPos, null, null, null, null, gravity, plate,
+                        null, null, null, null, copy, paste, null, null, null,
+                        slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9
+                };
+        menuInv.setContents(items);
 	}
 
 	private ItemStack createIcon(ItemStack icon, String path, String command){
