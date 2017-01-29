@@ -18,10 +18,10 @@ public class ResidenceProtection implements ASEProtection {
 	@Override
 	public boolean canEdit(Player player, ArmorStand armorstand) {
 		if(residencePlugin == null || !residencePlugin.isEnabled()) return true;
-		if(Residence.getResidenceManager() == null) return true;
+		if(Residence.getInstance().getResidenceManager() == null) return true;
 		Location loc = armorstand.getLocation();
-		ClaimedResidence res = Residence.getResidenceManager().getByLoc(loc);
-		FlagPermissions perms = Residence.getPermsByLoc(loc);
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(loc);
+		FlagPermissions perms = Residence.getInstance().getPermsByLoc(loc);
 		if(perms == null) return true;
 		if(res == null) return true;
 		return res.getPermissions().getOwnerUUID().equals(player.getUniqueId()) ||

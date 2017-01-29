@@ -1,6 +1,6 @@
 package io.github.rypofalem.armorstandeditor;
 
-import com.shynixn.petblocks.business.bukkit.PetBlocksPlugin;
+import com.github.shynixn.petblocks.business.bukkit.PetBlocksPlugin;
 import com.wasteofplastic.askyblock.ASkyBlock;
 import io.github.rypofalem.armorstandeditor.language.Language;
 import io.github.rypofalem.armorstandeditor.protection.*;
@@ -185,10 +185,3 @@ public class ArmorStandEditorPlugin extends JavaPlugin{
 		return lang;
 	}
 }
-//todo: 
-//Access to "DisabledSlots" data (probably simplified just a toggle enable/disable)
-//Access to the "Marker" switch (so you can make the hitbox super small)
-//API so that developers can add their own means of having editing respect protected regions (the plugin already supports worldguard, greifprevention and plotsquared)
-//Target a specific armorstand to edit, so solve the issue of editing armorstands close to each other and to make the Marker switch a viable option.
-//Ability for users to set a per-user amount for coarse/fine adjustment
-//Force an update packet when an armorstand moves a small amount so it feels more responsive.
