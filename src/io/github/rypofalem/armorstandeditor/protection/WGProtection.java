@@ -14,6 +14,9 @@ public class WGProtection implements ASEProtection {
 
 	@Override
 	public boolean canEdit(Player player, ArmorStand armorstand) {
+	    if(player.hasPermission("ase.fullbypass")){
+	        return true;
+        }
 		if(!wgPlugin.canBuild(player, armorstand.getLocation())){
 			return false;
 		}

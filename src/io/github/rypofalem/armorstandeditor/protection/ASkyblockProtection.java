@@ -15,8 +15,10 @@ public class ASkyblockProtection implements ASEProtection{
 
     @Override
     public boolean canEdit(Player p, ArmorStand a){
-        if(aSkyBlock == null || !aSkyBlock.isEnabled()){ return true; }
-        if(ASkyBlockAPI.getInstance().playerIsOnIsland(p)){
+        if(aSkyBlock == null || !aSkyBlock.isEnabled()){
+            return true;
+        }
+        if(ASkyBlockAPI.getInstance().playerIsOnIsland(p) || p.hasPermission("ase.fullbypass")){
             return true;
         }
         return false;
