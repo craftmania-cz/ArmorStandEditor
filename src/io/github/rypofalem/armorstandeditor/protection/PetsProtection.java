@@ -1,7 +1,7 @@
 package io.github.rypofalem.armorstandeditor.protection;
 
-import com.github.shynixn.petblocks.api.entities.PetBlock;
-import com.github.shynixn.petblocks.business.bukkit.PetBlocksPlugin;
+import com.github.shynixn.petblocks.api.business.entity.PetBlock;
+import com.github.shynixn.petblocks.bukkit.PetBlocksPlugin;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 

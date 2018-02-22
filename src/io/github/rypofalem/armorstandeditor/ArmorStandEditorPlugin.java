@@ -1,6 +1,6 @@
 package io.github.rypofalem.armorstandeditor;
 
-import com.github.shynixn.petblocks.business.bukkit.PetBlocksPlugin;
+import com.github.shynixn.petblocks.bukkit.PetBlocksPlugin;
 import com.wasteofplastic.askyblock.ASkyBlock;
 import io.github.rypofalem.armorstandeditor.language.Language;
 import io.github.rypofalem.armorstandeditor.protection.*;
