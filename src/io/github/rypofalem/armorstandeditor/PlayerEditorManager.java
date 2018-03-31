@@ -85,6 +85,11 @@ public class PlayerEditorManager implements Listener{
 					ItemStack nameTag = player.getInventory().getItemInMainHand(); 
 					if(nameTag.hasItemMeta() && nameTag.getItemMeta().hasDisplayName()){
 						ArmorStand as = (ArmorStand)e.getRightClicked();
+						if(!as.isVisible()){
+							player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+							e.setCancelled(true);
+							return;
+						}
 						String name = nameTag.getItemMeta().getDisplayName();
 						name = name.replace('&', ChatColor.COLOR_CHAR);
 						if((as.getCustomName() != null && !as.getCustomName().equals(name)) // armorstand has name and that name is not the same as the nametag
