@@ -21,7 +21,7 @@ public class Menu {
 	public Menu(PlayerEditor pe){
 		this.pe = pe;
 		name = pe.plugin.getLang().getMessage("mainmenutitle", "menutitle");
-		menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 54, name);
+		menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 36, name);
 		fillInventory();
 	}
 
@@ -141,7 +141,7 @@ public class Menu {
 					"equipment", "mode equipment");
 		}
 
-		if(pe.getPlayer().hasPermission("asedit.copy")){
+		/*if(pe.getPlayer().hasPermission("asedit.copy")){
 			copy = createIcon(new ItemStack(Material.BOOK_AND_QUILL),
 					"copy","mode copy");
 
@@ -174,14 +174,12 @@ public class Menu {
 
 			slot9 = createIcon( new ItemStack(Material.DOUBLE_PLANT, 9, (short) 1),
 					"copyslot","slot 9", "9");
-		}
+		}*/
         ItemStack[] items =
                 {xAxis, yAxis, zAxis, null, coarseAdj, fineAdj, null, rotate, place,
                         null, headPos, null, null, null, null, null, null, null,
                         rightArmPos, bodyPos, leftArmPos, reset, null, null, showArms, visibility, size,
-                        rightLegPos, null, leftLegPos, null, null, null, null, gravity, plate,
-                        null, null, null, null, copy, paste, null, null, null,
-                        slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9
+                        rightLegPos, null, leftLegPos, null, null, null, null, gravity, plate
                 };
         menuInv.setContents(items);
 	}

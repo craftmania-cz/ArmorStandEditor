@@ -103,10 +103,10 @@ public class PlayerEditor {
 			break;
 			case GRAVITY: toggleGravity(armorStand);
 			break;
-			case COPY: copy(armorStand);
+			/*case COPY: copy(armorStand);
 			break;
 			case PASTE: paste(armorStand);
-			break;
+			break;*/
 			case PLACEMENT: move(armorStand);
 			break;
 			case ROTATE: rotate(armorStand);
@@ -210,7 +210,7 @@ public class PlayerEditor {
 	private void copy(ArmorStand armorStand) {
 			copySlots.copyDataToSlot(armorStand);
 			sendMessage("copied" , "" + (copySlots.currentSlot + 1));
-			setMode(EditMode.PASTE);
+			//setMode(EditMode.PASTE);
 	}
 
 	private void paste(ArmorStand armorStand){

@@ -1,6 +1,6 @@
 package io.github.rypofalem.armorstandeditor.protection;
 
-import com.github.shynixn.petblocks.api.business.entity.PetBlock;
+/*import com.github.shynixn.petblocks.api.business.entity.PetBlock;
 import com.github.shynixn.petblocks.bukkit.PetBlocksPlugin;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -19,4 +19,4 @@ public class PetsProtection implements ASEProtection{
         }
         return true;
     }
-}
+}*/
