@@ -1,5 +1,6 @@
 package io.github.rypofalem.armorstandeditor;
 
+import com.github.shynixn.petblocks.bukkit.PetBlocksPlugin;
 import com.wasteofplastic.askyblock.ASkyBlock;
 import io.github.rypofalem.armorstandeditor.language.Language;
 import io.github.rypofalem.armorstandeditor.protection.*;
@@ -73,10 +74,10 @@ public class ArmorStandEditorPlugin extends JavaPlugin{
 			Plugin askyblock = getServer().getPluginManager().getPlugin("ASkyBlock");
 			if(askyblock instanceof ASkyBlock) addProtection(new ASkyblockProtection((ASkyBlock)askyblock));
 		}
-		/*if(isPluginEnabled("PetBlocks")){
+		if(isPluginEnabled("PetBlocks")){
 		    Plugin pets = getServer().getPluginManager().getPlugin("PetBlocks");
             if(pets instanceof PetBlocksPlugin) addProtection(new PetsProtection((PetBlocksPlugin)pets));
-        }*/
+        }
 	}
 
 	//add missing configuration values
