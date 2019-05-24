@@ -1,6 +1,7 @@
 package io.github.rypofalem.armorstandeditor;
 
 import io.github.rypofalem.armorstandeditor.menu.ASEHolder;
+import io.github.rypofalem.armorstandeditor.menu.EquipmentMenu;
 import io.github.rypofalem.armorstandeditor.menu.Menu;
 
 import java.util.ArrayList;
@@ -182,6 +183,15 @@ public class PlayerEditorManager implements Listener{
 					return;
 				}
 			}
+			if(e.getInventory().getName().equals(EquipmentMenu.getName())){
+				ItemStack item = e.getCurrentItem();
+				if(item == null) return;
+				if(item.getItemMeta() == null ) return;
+				if(item.getItemMeta().getLore() == null) return;
+				if(item.getItemMeta().getLore().contains(Util.encodeHiddenLore("ase icon"))){
+					e.setCancelled(true);
+				}
+			}
 		} catch(Exception exception){
 			plugin.logError(exception);
 		}catch(Error error){
@@ -195,6 +205,10 @@ public class PlayerEditorManager implements Listener{
 			if(e.getInventory() == null) return;
 			if(e.getInventory().getHolder() ==null) return;
 			if(!(e.getInventory().getHolder() instanceof ASEHolder)) return;
+			if(e.getInventory().getName().equals(EquipmentMenu.getName())){
+				PlayerEditor pe = players.get(e.getPlayer().getUniqueId());
+				pe.equipMenu.equipArmorstand();
+			}
 		} catch(Exception exception){
 			plugin.logError(exception);
 		}catch(Error error){

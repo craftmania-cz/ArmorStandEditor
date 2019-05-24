@@ -115,6 +115,8 @@ public class PlayerEditor {
 			break;
 			case RESET: resetPosition(armorStand);
 			break;
+			case EQUIPMENT: openEquipment(armorStand);
+			break;
 			case NONE: sendMessage("nomode", null); break;
 			}
 		}else{
@@ -130,6 +132,11 @@ public class PlayerEditor {
         glow(armorStand);
         return armorStand;
     }
+
+	private void openEquipment(ArmorStand armorStand) {
+		equipMenu = new EquipmentMenu(this, armorStand);
+		equipMenu.open();
+	}
 
     private void resetPosition(ArmorStand armorStand) {
         armorStand.setHeadPose(new EulerAngle(0,0,0));
