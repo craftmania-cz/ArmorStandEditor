@@ -28,7 +28,8 @@ import java.util.UUID;
 
 //Manages PlayerEditors and Player Events related to editing armorstands
 public class PlayerEditorManager implements Listener {
-    ArmorStandEditorPlugin plugin;
+
+    private Main plugin;
     HashMap<UUID, PlayerEditor> players;
     private ASEHolder pluginHolder = new ASEHolder();
     double coarseAdj;
@@ -36,9 +37,9 @@ public class PlayerEditorManager implements Listener {
     double coarseMov;
     double fineMov;
 
-    public PlayerEditorManager(ArmorStandEditorPlugin plugin) {
+    public PlayerEditorManager(Main plugin) {
         this.plugin = plugin;
-        players = new HashMap<UUID, PlayerEditor>();
+        players = new HashMap<>();
         coarseAdj = Util.FULLCIRCLE / plugin.coarseRot;
         fineAdj = Util.FULLCIRCLE / plugin.fineRot;
         coarseMov = 1;
@@ -60,10 +61,8 @@ public class PlayerEditorManager implements Listener {
                     }
                 }
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -110,10 +109,8 @@ public class PlayerEditorManager implements Listener {
                     }
                 }
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -130,10 +127,8 @@ public class PlayerEditorManager implements Listener {
                     getPlayerEditor(player.getUniqueId()).openMenu();
                 }
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -154,10 +149,8 @@ public class PlayerEditorManager implements Listener {
                     }
                 }
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -188,10 +181,8 @@ public class PlayerEditorManager implements Listener {
                     e.setCancelled(true);
                 }
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -205,10 +196,8 @@ public class PlayerEditorManager implements Listener {
                 PlayerEditor pe = players.get(e.getPlayer().getUniqueId());
                 pe.equipMenu.equipArmorstand();
             }
-        } catch (Exception exception) {
-            plugin.logError(exception);
-        } catch (Error error) {
-            plugin.logError(error);
+        } catch (Exception | Error exception) {
+            exception.printStackTrace();
         }
     }
 

@@ -5,6 +5,7 @@ bin/
 .idea/
 dependency-reduced-pom.xml
 target
-.gradle
+.gradle/
 *.iml
 build
+*.bin

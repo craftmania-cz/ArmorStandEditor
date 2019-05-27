@@ -20,7 +20,7 @@ public class Menu {
 
     public Menu(PlayerEditor pe) {
         this.pe = pe;
-        name = pe.plugin.getLang().getMessage("mainmenutitle", "menutitle");
+        name = "ArmorStandEditor";
         menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 54, name);
         fillInventory();
     }
@@ -177,7 +177,7 @@ public class Menu {
         }
         ItemStack[] items =
                 {xAxis, yAxis, zAxis, null, coarseAdj, fineAdj, null, rotate, place,
-                        null, headPos, null, null, null, null, null, null, null,
+                        null, headPos, equipment, disableSlots, null, null, null, null, null,
                         rightArmPos, bodyPos, leftArmPos, reset, null, null, showArms, visibility, size,
                         rightLegPos, null, leftLegPos, null, null, null, null, gravity, plate,
                         null, null, null, null, copy, paste, null, null, null,
@@ -186,42 +186,26 @@ public class Menu {
         menuInv.setContents(items);
     }
 
-    private ItemStack createIcon(ItemStack icon, String path, String command) {
+    private ItemStack createIcon(ItemStack icon, String name, String command) {
         ItemMeta meta = icon.getItemMeta();
-        meta.setDisplayName(getIconName(path));
+        meta.setDisplayName(name);
         ArrayList<String> loreList = new ArrayList<String>();
         loreList.add(Util.encodeHiddenLore("ase " + command));
-        loreList.add(getIconDescription(path));
+        loreList.add("null");
         meta.setLore(loreList);
         icon.setItemMeta(meta);
         return icon;
     }
 
-    private ItemStack createIcon(ItemStack icon, String path, String command, String option) {
+    private ItemStack createIcon(ItemStack icon, String name, String command, String option) {
         ItemMeta meta = icon.getItemMeta();
-        meta.setDisplayName(getIconName(path, option));
+        meta.setDisplayName(name);
         ArrayList<String> loreList = new ArrayList<String>();
         loreList.add(Util.encodeHiddenLore("ase " + command));
-        loreList.add(getIconDescription(path, option));
+        loreList.add("null");
         meta.setLore(loreList);
         icon.setItemMeta(meta);
         return icon;
-    }
-
-    private String getIconName(String path) {
-        return getIconName(path, null);
-    }
-
-    private String getIconName(String path, String option) {
-        return pe.plugin.getLang().getMessage(path, "iconname", option);
-    }
-
-    private String getIconDescription(String path) {
-        return getIconDescription(path, null);
-    }
-
-    private String getIconDescription(String path, String option) {
-        return pe.plugin.getLang().getMessage(path + ".description", "icondescription", option);
     }
 
     public void openMenu() {

@@ -1,7 +1,6 @@
 name: ArmorStandEditor
-main: cz.craftmania.ase.ArmorStandEditorPlugin
+main: cz.craftmania.ase.Main
 version: 1.2.0
-author: RypoFalem
 description: Allows players to edit certain NBT tags of armorstands without any commands.
 softdepend: [WorldGuard,PlotSquared,GriefPrevention,Claims,Residence]
 api-version: "1.12"

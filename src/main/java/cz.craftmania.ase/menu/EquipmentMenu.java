@@ -22,7 +22,7 @@ public class EquipmentMenu {
     public EquipmentMenu(PlayerEditor pe, ArmorStand as) {
         this.pe = pe;
         this.armorstand = as;
-        name = pe.plugin.getLang().getMessage("equiptitle", "menutitle");
+        name = "Armorstand INV";
         menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 18, name);
     }
 
@@ -39,7 +39,7 @@ public class EquipmentMenu {
 
         ItemStack disabledIcon = new ItemStack(Material.BARRIER);
         ItemMeta meta = disabledIcon.getItemMeta();
-        meta.setDisplayName(pe.plugin.getLang().getMessage("disabled", "warn")); //equipslot.msg <option>
+        meta.setDisplayName("§cDeaktivovano"); //equipslot.msg <option>
         ArrayList<String> loreList = new ArrayList<String>();
         loreList.add(Util.encodeHiddenLore("ase icon"));
         meta.setLore(loreList);
@@ -61,9 +61,9 @@ public class EquipmentMenu {
     private ItemStack createIcon(Material mat, String slot) {
         ItemStack icon = new ItemStack(mat);
         ItemMeta meta = icon.getItemMeta();
-        meta.setDisplayName(pe.plugin.getLang().getMessage("equipslot", "iconname", slot)); //equipslot.msg <option>
+        meta.setDisplayName(slot); //equipslot.msg <option>
         ArrayList<String> loreList = new ArrayList<String>();
-        loreList.add(pe.plugin.getLang().getMessage("equipslot.description", "icondescription", slot)); //equioslot.description.msg <option>
+        loreList.add(slot); //equioslot.description.msg <option>
         loreList.add(Util.encodeHiddenLore("ase icon"));
         meta.setLore(loreList);
         icon.setItemMeta(meta);

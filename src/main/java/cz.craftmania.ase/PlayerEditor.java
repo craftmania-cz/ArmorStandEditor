@@ -2,7 +2,11 @@ package cz.craftmania.ase;
 
 import cz.craftmania.ase.menu.EquipmentMenu;
 import cz.craftmania.ase.menu.Menu;
-import cz.craftmania.ase.modes.*;
+import cz.craftmania.ase.modes.AdjustmentMode;
+import cz.craftmania.ase.modes.ArmorStandData;
+import cz.craftmania.ase.modes.Axis;
+import cz.craftmania.ase.modes.CopySlots;
+import cz.craftmania.ase.modes.EditMode;
 import cz.craftmania.ase.protection.ASEProtection;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -17,24 +21,24 @@ import java.util.UUID;
 
 public class PlayerEditor {
 
-    public ArmorStandEditorPlugin plugin;
+    public Main plugin;
     private UUID uuid;
-    EditMode eMode;
-    AdjustmentMode adjMode;
-    CopySlots copySlots;
-    Axis axis;
-    double eulerAngleChange;
-    double degreeAngleChange;
-    double movChange;
-    Menu chestMenu;
-    boolean cancelMenuOpen = false;
-    int uncancelTaskID = 0;
-    ArmorStand target;
-    EquipmentMenu equipMenu;
-    ArrayList<ArmorStand> targetList = null;
-    int targetIndex = 0;
+    private EditMode eMode;
+    private AdjustmentMode adjMode;
+    private CopySlots copySlots;
+    private Axis axis;
+    private double eulerAngleChange;
+    private double degreeAngleChange;
+    private double movChange;
+    private Menu chestMenu;
+    private boolean cancelMenuOpen = false;
+    private int uncancelTaskID = 0;
+    private ArmorStand target;
+    public EquipmentMenu equipMenu;
+    private ArrayList<ArmorStand> targetList = null;
+    private int targetIndex = 0;
 
-    public PlayerEditor(UUID uuid, ArmorStandEditorPlugin plugin) {
+    public PlayerEditor(UUID uuid, Main plugin) {
         this.uuid = uuid;
         this.plugin = plugin;
         eMode = EditMode.NONE;
@@ -49,12 +53,12 @@ public class PlayerEditor {
 
     public void setMode(EditMode editMode) {
         this.eMode = editMode;
-        sendMessage("setmode", editMode.toString().toLowerCase());
+        this.getPlayer().sendMessage("§eMod nastaven na: §6" + editMode.toString().toLowerCase());
     }
 
     public void setAxis(Axis axis) {
         this.axis = axis;
-        sendMessage("setaxis", axis.toString().toLowerCase());
+        this.getPlayer().sendMessage("§eOsa nastavena na: §6" + axis.toString().toLowerCase());
     }
 
     public void setAdjMode(AdjustmentMode adjMode) {
@@ -67,12 +71,12 @@ public class PlayerEditor {
             movChange = getManager().fineMov;
         }
         degreeAngleChange = eulerAngleChange / Math.PI * 180;
-        sendMessage("setadj", adjMode.toString().toLowerCase());
+        this.getPlayer().sendMessage("§eRozliseni nastaveno na: §6" + adjMode.toString().toLowerCase());
     }
 
     public void setCopySlot(byte slot) {
         copySlots.changeSlots(slot);
-        sendMessage("setslot", String.valueOf((slot + 1)));
+        this.getPlayer().sendMessage("§eVybran kopirovaci slot: §6" + String.valueOf((slot + 1)));
     }
 
     public void editArmorStand(ArmorStand armorStand) {
@@ -134,11 +138,11 @@ public class PlayerEditor {
                     openEquipment(armorStand);
                     break;
                 case NONE:
-                    sendMessage("nomode", null);
+                    this.getPlayer().sendMessage("§cTakovy mod neexistuje!");
                     break;
             }
         } else {
-            cannotBuildMessage();
+            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
         }
     }
 
@@ -197,7 +201,7 @@ public class PlayerEditor {
                     editArmorStand(armorStand);
             }
         } else {
-            cannotBuildMessage();
+            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
         }
     }
 
@@ -249,7 +253,7 @@ public class PlayerEditor {
 
     private void copy(ArmorStand armorStand) {
         copySlots.copyDataToSlot(armorStand);
-        sendMessage("copied", "" + (copySlots.currentSlot + 1));
+        this.getPlayer().sendMessage("§eStav armorstandu okopirovan do slotu: §6" + (copySlots.currentSlot + 1));
         setMode(EditMode.PASTE);
     }
 
@@ -276,9 +280,9 @@ public class PlayerEditor {
                 armorStand.setItemInHand(data.rightHand);
                 armorStand.getEquipment().setItemInOffHand(data.leftHand);
             }
-            sendMessage("pasted", "" + (copySlots.currentSlot + 1));
+            this.getPlayer().sendMessage("§eNastaveni bylo okopirovano z slotu: §6" + (copySlots.currentSlot + 1));
         } else {
-            cannotBuildMessage();
+            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
         }
     }
 
@@ -289,7 +293,7 @@ public class PlayerEditor {
     private void toggleGravity(ArmorStand armorStand) {
         armorStand.setGravity(Util.toggleFlag(armorStand.hasGravity()));
         String state = armorStand.hasGravity() ? "on" : "off";
-        sendMessage("setgravity", state);
+        this.getPlayer().sendMessage("§eGravitace nastavena na: §6" + state);
     }
 
     void togglePlate(ArmorStand armorStand) {
@@ -356,14 +360,14 @@ public class PlayerEditor {
         if (armorStands == null || armorStands.isEmpty()) {
             target = null;
             targetList = null;
-            sendMessage("notarget", null);
+            this.getPlayer().sendMessage("§eVyber armorstandu je odemknut!");
             return;
         }
 
         if (targetList == null) {
             targetList = armorStands;
             targetIndex = 0;
-            sendMessage("target", null);
+            this.getPlayer().sendMessage("§eVyber armorstandu je uzamknut Nyni budes upravovat pouze tento!");
         } else {
             boolean same = targetList.size() == armorStands.size();
             if (same) for (ArmorStand as : armorStands) {
@@ -376,10 +380,9 @@ public class PlayerEditor {
             } else {
                 targetList = armorStands;
                 targetIndex = 0;
-                sendMessage("target", null);
+                this.getPlayer().sendMessage("§eVyber armorstandu je uzamknut Nyni budes upravovat pouze tento!");
             }
         }
-        plugin.print(targetIndex + "");
         target = targetList.get(targetIndex);
         glow(target);
     }
@@ -387,11 +390,6 @@ public class PlayerEditor {
     private void glow(ArmorStand armorStand) {
         armorStand.removePotionEffect(PotionEffectType.GLOWING);
         armorStand.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 15, 1, false, false));
-    }
-
-    void sendMessage(String path, String option) {
-        String message = plugin.getLang().getMessage(path, "info", option);
-        plugin.getServer().getPlayer(getUUID()).sendMessage(message);
     }
 
     public PlayerEditorManager getManager() {
@@ -411,10 +409,6 @@ public class PlayerEditor {
             if (!prot.canEdit(getPlayer(), armorstand)) return false;
         }
         return true;
-    }
-
-    private void cannotBuildMessage() {
-        getPlayer().sendMessage(plugin.getLang().getMessage("cantedit", "warn"));
     }
 
     public void openMenu() {
