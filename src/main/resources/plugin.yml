@@ -3,6 +3,7 @@ main: cz.craftmania.ase.Main
 version: 1.2.0
 description: Allows players to edit certain NBT tags of armorstands without any commands.
 softdepend: [WorldGuard,PlotSquared,GriefPrevention,Claims,Residence]
+depend: [CraftCore]
 api-version: "1.12"
 commands:
   ase:

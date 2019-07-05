@@ -55,6 +55,17 @@ public class PlayerEditorManager implements Listener {
                 if (e.getDamager() instanceof Player) {
                     Player player = (Player) e.getDamager();
                     if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) {
+                        if (!as.isVisible()) {
+                            player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                            e.setCancelled(true);
+                            return;
+                        }
+                        if (as.getName().contains("{") || as.getName().contains("}")
+                                || as.getCustomName().contains("{") || as.getCustomName().contains("}")) {
+                            player.sendMessage("§cTento ArmorStand nelze upravit!");
+                            e.setCancelled(true);
+                            return;
+                        }
                         e.setCancelled(true);
                         getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
                         getPlayerEditor(player.getUniqueId()).editArmorStand(as);
@@ -75,6 +86,16 @@ public class PlayerEditorManager implements Listener {
                 if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) { // if holding the edit tool apply options to click armorstand
                     e.setCancelled(true);
                     ArmorStand as = (ArmorStand) e.getRightClicked();
+                    if (!as.isVisible()) {
+                        player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                        e.setCancelled(true);
+                        return;
+                    }
+                    if (as.getName().contains("{") || as.getName().contains("}")) {
+                        player.sendMessage("§cTento ArmorStand nelze upravit!");
+                        e.setCancelled(true);
+                        return;
+                    }
                     getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
                     getPlayerEditor(player.getUniqueId()).reverseEditArmorStand(as);
                 } else if (player.getInventory().getItemInMainHand().getType() == Material.NAME_TAG) { //if the clicked an armorstand with a nametag, apply the name
@@ -83,6 +104,11 @@ public class PlayerEditorManager implements Listener {
                         ArmorStand as = (ArmorStand) e.getRightClicked();
                         if (!as.isVisible()) {
                             player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                            e.setCancelled(true);
+                            return;
+                        }
+                        if (as.getName().contains("{") || as.getName().contains("}")) {
+                            player.sendMessage("§cTento ArmorStand nelze upravit!");
                             e.setCancelled(true);
                             return;
                         }
