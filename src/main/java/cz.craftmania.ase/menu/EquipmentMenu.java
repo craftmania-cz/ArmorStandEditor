@@ -55,7 +55,7 @@ public class EquipmentMenu {
                 .setLore("pants", Util.encodeHiddenLore("ase icon")).build();
         ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§f§lBoty")
                 .setLore("boots", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack rightHandIcon = new ItemBuilder(Material.WOOD_SWORD).setName("§f§lPrava ruka")
+        ItemStack rightHandIcon = new ItemBuilder(Material.WOODEN_SWORD).setName("§f§lPrava ruka")
                 .setLore("rhand", Util.encodeHiddenLore("ase icon")).build();
         ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§f§lLeva ruka")
                 .setLore("lhand", Util.encodeHiddenLore("ase icon")).build();

@@ -37,13 +37,13 @@ public class Menu {
 
         if (pe.getPlayer().hasPermission("asedit.edit")) {
 
-            xAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)14)
+            xAxis = new ItemBuilder(Material.RED_TERRACOTTA)
                     .setName("§c§lX OSA").setLore(cmd("axis x")).build();
 
-            yAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)13)
+            yAxis = new ItemBuilder(Material.GREEN_TERRACOTTA)
                     .setName("§2§lY OSA").setLore(cmd("axis y")).build();
 
-            zAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)11)
+            zAxis = new ItemBuilder(Material.BLUE_TERRACOTTA)
                     .setName("§9§lZ OSA").setLore(cmd("axis z")).build();
 
             coarseAdj = new ItemBuilder(Material.DIRT).setName("§e§lHrube nastaveni")
@@ -79,13 +79,13 @@ public class Menu {
             visibility = new ItemBuilder(Material.LINGERING_POTION).setName("§e§lViditelnost")
                     .setLore(cmd("mode invisible")).build();
 
-            size = new ItemBuilder(Material.RAW_FISH).setName("§c§lVelikost")
+            size = new ItemBuilder(Material.TROPICAL_FISH).setName("§c§lVelikost")
                     .setLore(cmd("mode size")).build();
 
             gravity = new ItemBuilder(Material.SAND).setName("§e§lGravitace")
                     .setLore(cmd("mode gravity")).build();
 
-            plate = new ItemBuilder(Material.STEP).setName("§f§lPodstavec")
+            plate = new ItemBuilder(Material.STONE_SLAB).setName("§f§lPodstavec")
                     .setLore(cmd("mode baseplate")).build();
 
             place = new ItemBuilder(Material.MINECART).setName("§f§lPozice")
@@ -97,29 +97,29 @@ public class Menu {
             equipment = new ItemBuilder(Material.CHEST).setName("§f§lInventar")
                     .setLore(cmd("mode equipment")).build();
 
-            filler = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)3).setName("§f").build();
+            filler = new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setDurability((short)3).setName("§f").build();
         }
 
         if (pe.getPlayer().hasPermission("asedit.copy")) {
-            copy = new ItemBuilder(Material.BOOK_AND_QUILL).setName("§f§lKopirovat")
+            copy = new ItemBuilder(Material.WRITABLE_BOOK).setName("§f§lKopirovat")
                     .setLore(cmd("mode copy")).build();
 
             paste = new ItemBuilder(Material.ENCHANTED_BOOK).setName("§b§lVlozit")
                     .setLore(cmd("mode paste")).build();
 
-            slot1 = new ItemBuilder(Material.YELLOW_FLOWER).setName("§e§lSlot 1")
+            slot1 = new ItemBuilder(Material.DANDELION).setName("§e§lSlot 1")
                     .setLore(cmd("slot 1")).build();
 
-            slot2 = new ItemBuilder(Material.RED_ROSE, 2).setName("§e§lSlot 2").setDurability((short)3)
+            slot2 = new ItemBuilder(Material.POPPY, 2).setName("§e§lSlot 2").setDurability((short)3)
                     .setLore(cmd("slot 2")).build();
 
-            slot3 = new ItemBuilder(Material.RED_ROSE, 3).setName("§e§lSlot 3").setDurability((short)1)
+            slot3 = new ItemBuilder(Material.BLUE_ORCHID, 3).setName("§e§lSlot 3").setDurability((short)1)
                     .setLore(cmd("slot 3")).build();
 
-            slot4 = new ItemBuilder(Material.DOUBLE_PLANT, 4).setName("§e§lSlot 4").setDurability((short)5)
+            slot4 = new ItemBuilder(Material.WHITE_TULIP, 4).setName("§e§lSlot 4").setDurability((short)5)
                     .setLore(cmd("slot 4")).build();
 
-            slot5 = new ItemBuilder(Material.DOUBLE_PLANT, 5).setName("§e§lSlot 4").setDurability((short)6)
+            slot5 = new ItemBuilder(Material.WITHER_ROSE, 5).setName("§e§lSlot 4").setDurability((short)6)
                     .setLore(cmd("slot 5")).build();
         }
         ItemStack[] items =

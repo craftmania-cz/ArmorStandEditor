@@ -91,8 +91,7 @@ public class PlayerEditorManager implements Listener {
                         e.setCancelled(true);
                         return;
                     }
-                    if (as.getName().contains("{") || as.getName().contains("}")
-                            || as.getCustomName().contains("{") || as.getCustomName().contains("}")) {
+                    if (as.getName().contains("{") || as.getName().contains("}")) {
                         player.sendMessage("§cTento ArmorStand nelze upravit!");
                         e.setCancelled(true);
                         return;
@@ -108,8 +107,7 @@ public class PlayerEditorManager implements Listener {
                             e.setCancelled(true);
                             return;
                         }
-                        if (as.getName().contains("{") || as.getName().contains("}")
-                        || as.getCustomName().contains("{") || as.getCustomName().contains("}")) {
+                        if (as.getName().contains("{") || as.getName().contains("}")) {
                             player.sendMessage("§cTento ArmorStand nelze upravit!");
                             e.setCancelled(true);
                             return;
@@ -188,7 +186,7 @@ public class PlayerEditorManager implements Listener {
             if (e.getInventory() == null) return;
             if (e.getInventory().getHolder() == null) return;
             if (!(e.getInventory().getHolder() instanceof ASEHolder)) return;
-            if (e.getInventory().getName().equals(Menu.getName())) {
+            if (e.getView().getTitle().equals(Menu.getName())) {
                 e.setCancelled(true);
                 ItemStack item = e.getCurrentItem();
                 if (item != null && item.hasItemMeta() && item.getItemMeta().hasLore()
@@ -200,7 +198,7 @@ public class PlayerEditorManager implements Listener {
                     return;
                 }
             }
-            if (e.getInventory().getName().equals(EquipmentMenu.getName())) {
+            if (e.getView().getTitle().equals(EquipmentMenu.getName())) {
                 ItemStack item = e.getCurrentItem();
                 if (item == null) return;
                 if (item.getItemMeta() == null) return;
@@ -220,7 +218,7 @@ public class PlayerEditorManager implements Listener {
             if (e.getInventory() == null) return;
             if (e.getInventory().getHolder() == null) return;
             if (!(e.getInventory().getHolder() instanceof ASEHolder)) return;
-            if (e.getInventory().getName().equals(EquipmentMenu.getName())) {
+            if (e.getView().getTitle().equals(EquipmentMenu.getName())) {
                 PlayerEditor pe = players.get(e.getPlayer().getUniqueId());
                 pe.equipMenu.equipArmorstand();
             }
