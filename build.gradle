@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'cz.craftmania.ase'
-version = '1.0.100'
+version = '1.2.0'
 
 description = """"""
 
@@ -17,7 +17,6 @@ clean { delete "./target" }
 clean { delete "./build" }
 
 task compilePlugin(type: Jar) {
-    delete "./build"
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
@@ -26,7 +25,7 @@ repositories {
     flatDir { dirs 'lib' }
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
-    maven { url "http://dl.bintray.com/tastybento/maven-repo" } // aSkyblock API
+    maven { url "https://packages.craftmania.cz/repository/craftmania/" }
 }
 
 dependencies {
@@ -40,4 +39,7 @@ dependencies {
     compileOnly name: 'worldguard-6.2.1'
     compileOnly name: 'Vault'
     compileOnly name: 'askyblock'
+    
+    // CraftMania
+    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.0.14'
 }

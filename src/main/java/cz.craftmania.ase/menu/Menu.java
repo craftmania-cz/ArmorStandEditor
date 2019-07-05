@@ -2,6 +2,7 @@ package cz.craftmania.ase.menu;
 
 import cz.craftmania.ase.PlayerEditor;
 import cz.craftmania.ase.Util;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -31,157 +32,103 @@ public class Menu {
                 headPos = null,
                 rightArmPos = null, bodyPos = null, leftArmPos = null, reset = null, showArms = null, visibility = null, size = null,
                 rightLegPos = null, equipment = null, leftLegPos = null, disableSlots = null, gravity = null, plate = null, copy = null, paste = null,
-                slot1 = null, slot2 = null, slot3 = null, slot4 = null, slot5 = null, slot6 = null, slot7 = null, slot8 = null, slot9 = null;
+                slot1 = null, slot2 = null, slot3 = null, slot4 = null, slot5 = null, slot6 = null, slot7 = null, slot8 = null, slot9 = null,
+                filler = null, navod = null;
 
-        if (pe.getPlayer().hasPermission("asedit.head") ||
-                pe.getPlayer().hasPermission("asedit.body") ||
-                pe.getPlayer().hasPermission("asedit.leftarm") ||
-                pe.getPlayer().hasPermission("asedit.rightarm") ||
-                pe.getPlayer().hasPermission("asedit.leftleg") ||
-                pe.getPlayer().hasPermission("asedit.rightleg") ||
-                pe.getPlayer().hasPermission("asedit.placement")) {
-            xAxis = createIcon(new ItemStack(Material.WOOL, 1, (short) 14),
-                    "xaxis", "axis x");
+        if (pe.getPlayer().hasPermission("asedit.edit")) {
 
-            yAxis = createIcon(new ItemStack(Material.WOOL, 1, (short) 13),
-                    "yaxis", "axis y");
+            xAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)14)
+                    .setName("§c§lX OSA").setLore(cmd("axis x")).build();
 
-            zAxis = createIcon(new ItemStack(Material.WOOL, 1, (short) 11),
-                    "zaxis", "axis z");
+            yAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)13)
+                    .setName("§2§lY OSA").setLore(cmd("axis y")).build();
 
-            coarseAdj = createIcon(new ItemStack(Material.DIRT, 1, (short) 1),
-                    "coarseadj", "adj coarse");
+            zAxis = new ItemBuilder(Material.CONCRETE).setDurability((short)11)
+                    .setName("§9§lZ OSA").setLore(cmd("axis z")).build();
 
-            fineAdj = createIcon(new ItemStack(Material.SANDSTONE),
-                    "fineadj", "adj fine");
-        }
+            coarseAdj = new ItemBuilder(Material.DIRT).setName("§e§lHrube nastaveni")
+                    .setLore(cmd("adj coarse")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.head")) {
-            headPos = createIcon(new ItemStack(Material.LEATHER_HELMET),
-                    "head", "mode head");
-        }
+            fineAdj = new ItemBuilder(Material.SANDSTONE).setName("§e§lJemne nastaveni")
+                    .setLore(cmd("adj fine")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.body")) {
-            bodyPos = createIcon(new ItemStack(Material.LEATHER_CHESTPLATE),
-                    "body", "mode body");
-        }
+            headPos = new ItemBuilder(Material.LEATHER_HELMET).setName("§f§lNastaveni hlavy")
+                    .setLore(cmd("mode head")).hideAllFlags().build();
 
-        if (pe.getPlayer().hasPermission("asedit.leftleg")) {
-            leftLegPos = createIcon(new ItemStack(Material.LEATHER_LEGGINGS),
-                    "leftleg", "mode leftleg");
-        }
+            bodyPos = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§f§lNastaveni tela")
+                    .setLore(cmd("mode body")).hideAllFlags().build();
 
-        if (pe.getPlayer().hasPermission("asedit.rightleg")) {
-            rightLegPos = createIcon(new ItemStack(Material.LEATHER_LEGGINGS),
-                    "rightleg", "mode rightleg");
-        }
+            leftLegPos = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lLeva noha")
+                    .setLore(cmd("mode leftleg")).hideAllFlags().build();
 
-        if (pe.getPlayer().hasPermission("asedit.leftarm")) {
-            leftArmPos = createIcon(new ItemStack(Material.STICK),
-                    "leftarm", "mode leftarm");
-        }
+            rightLegPos = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lPrava noha")
+                    .setLore(cmd("mode rightleg")).hideAllFlags().build();
 
-        if (pe.getPlayer().hasPermission("asedit.rightarm")) {
-            rightArmPos = createIcon(new ItemStack(Material.STICK),
-                    "rightarm", "mode rightarm");
-        }
+            leftArmPos = new ItemBuilder(Material.STICK).setName("§f§lLeva ruka")
+                    .setLore(cmd("mode leftarm")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.reset")) {
-            reset = createIcon(new ItemStack(Material.LEVER),
-                    "reset", "mode reset");
-        }
+            rightArmPos = new ItemBuilder(Material.STICK).setName("§f§lPrava ruka")
+                    .setLore(cmd("mode rightarm")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.showarms")) {
-            showArms = createIcon(new ItemStack(Material.STICK),
-                    "showarms", "mode showarms");
-        }
+            reset = new ItemBuilder(Material.LEVER).setName("§c§lReset")
+                    .setLore(cmd("mode reset")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.invisible")) {
-            visibility = new ItemStack(Material.POTION, 1);
-            PotionMeta potionMeta = (PotionMeta) visibility.getItemMeta();
-            PotionEffect eff1 = new PotionEffect(PotionEffectType.INVISIBILITY, 1, 0);
-            potionMeta.addCustomEffect(eff1, true);
-            visibility.setItemMeta(potionMeta);
-            visibility = createIcon(visibility,
-                    "invisible", "mode invisible");
-        }
+            showArms = new ItemBuilder(Material.STICK).setName("§b§lZobrazeni rukou")
+                    .setLore(cmd("mode showarms")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.size")) {
-            size = createIcon(new ItemStack(Material.RAW_FISH, 1, (short) 3),
-                    "size", "mode size");
-        }
+            visibility = new ItemBuilder(Material.LINGERING_POTION).setName("§e§lViditelnost")
+                    .setLore(cmd("mode invisible")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.disableslots")) {
-            disableSlots = createIcon(new ItemStack(Material.BARRIER),
-                    "disableslots", "mode disableslots");
-        }
+            size = new ItemBuilder(Material.RAW_FISH).setName("§c§lVelikost")
+                    .setLore(cmd("mode size")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.gravity")) {
-            gravity = createIcon(new ItemStack(Material.SAND),
-                    "gravity", "mode gravity");
-        }
+            gravity = new ItemBuilder(Material.SAND).setName("§e§lGravitace")
+                    .setLore(cmd("mode gravity")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.baseplate")) {
-            plate = createIcon(new ItemStack(Material.STEP, 1),
-                    "baseplate", "mode baseplate");
-        }
+            plate = new ItemBuilder(Material.STEP).setName("§f§lPodstavec")
+                    .setLore(cmd("mode baseplate")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.placement")) {
-            place = createIcon(new ItemStack(Material.MINECART, 1),
-                    "placement", "mode placement");
-        }
+            place = new ItemBuilder(Material.MINECART).setName("§f§lPozice")
+                    .setLore(cmd("mode placement")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.rotate")) {
-            rotate = createIcon(new ItemStack(Material.COMPASS, 1),
-                    "rotate", "mode rotate");
-        }
+            rotate = new ItemBuilder(Material.COMPASS).setName("§c§lRotace")
+                    .setLore(cmd("mode rotate")).build();
 
-        if (pe.getPlayer().hasPermission("asedit.equipment")) {
-            equipment = createIcon(new ItemStack(Material.CHEST, 1),
-                    "equipment", "mode equipment");
+            equipment = new ItemBuilder(Material.CHEST).setName("§f§lInventar")
+                    .setLore(cmd("mode equipment")).build();
+
+            filler = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)3).setName("§f").build();
         }
 
         if (pe.getPlayer().hasPermission("asedit.copy")) {
-            copy = createIcon(new ItemStack(Material.BOOK_AND_QUILL),
-                    "copy", "mode copy");
+            copy = new ItemBuilder(Material.BOOK_AND_QUILL).setName("§f§lKopirovat")
+                    .setLore(cmd("mode copy")).build();
 
-            paste = createIcon(new ItemStack(Material.ENCHANTED_BOOK),
-                    "paste", "mode paste");
+            paste = new ItemBuilder(Material.ENCHANTED_BOOK).setName("§b§lVlozit")
+                    .setLore(cmd("mode paste")).build();
 
-            slot1 = createIcon(new ItemStack(Material.YELLOW_FLOWER),
-                    "copyslot", "slot 1", "1");
+            slot1 = new ItemBuilder(Material.YELLOW_FLOWER).setName("§e§lSlot 1")
+                    .setLore(cmd("slot 1")).build();
 
-            slot2 = createIcon(new ItemStack(Material.RED_ROSE, 2, (short) 3),
-                    "copyslot", "slot 2", "2");
+            slot2 = new ItemBuilder(Material.RED_ROSE, 2).setName("§e§lSlot 2").setDurability((short)3)
+                    .setLore(cmd("slot 2")).build();
 
-            slot3 = createIcon(new ItemStack(Material.RED_ROSE, 3, (short) 1),
-                    "copyslot", "slot 3", "3");
+            slot3 = new ItemBuilder(Material.RED_ROSE, 3).setName("§e§lSlot 3").setDurability((short)1)
+                    .setLore(cmd("slot 3")).build();
 
-            slot4 = createIcon(new ItemStack(Material.DOUBLE_PLANT, 4, (short) 5),
-                    "copyslot", "slot 4", "4");
+            slot4 = new ItemBuilder(Material.DOUBLE_PLANT, 4).setName("§e§lSlot 4").setDurability((short)5)
+                    .setLore(cmd("slot 4")).build();
 
-            slot5 = createIcon(new ItemStack(Material.RED_ROSE, 5, (short) 4),
-                    "copyslot", "slot 5", "5");
-
-            slot6 = createIcon(new ItemStack(Material.RED_ROSE, 6, (short) 2),
-                    "copyslot", "slot 6", "6");
-
-            slot7 = createIcon(new ItemStack(Material.RED_ROSE, 7, (short) 1),
-                    "copyslot", "slot 7", "7");
-
-            slot8 = createIcon(new ItemStack(Material.RED_ROSE, 8, (short) 8),
-                    "copyslot", "slot 8", "8");
-
-            slot9 = createIcon(new ItemStack(Material.DOUBLE_PLANT, 9, (short) 1),
-                    "copyslot", "slot 9", "9");
+            slot5 = new ItemBuilder(Material.DOUBLE_PLANT, 5).setName("§e§lSlot 4").setDurability((short)6)
+                    .setLore(cmd("slot 5")).build();
         }
         ItemStack[] items =
-                {xAxis, yAxis, zAxis, null, coarseAdj, fineAdj, null, rotate, place,
-                        null, headPos, equipment, disableSlots, null, null, null, null, null,
-                        rightArmPos, bodyPos, leftArmPos, reset, null, null, showArms, visibility, size,
-                        rightLegPos, null, leftLegPos, null, null, null, null, gravity, plate,
-                        null, null, null, null, copy, paste, null, null, null,
-                        slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9
+                {       filler, filler, filler, filler, null, filler, filler, filler, filler,
+                        xAxis, yAxis, zAxis, reset, filler, coarseAdj, fineAdj, rotate, place,
+                        null, headPos, null, null, filler, null, showArms, visibility, size,
+                        rightArmPos, bodyPos, leftArmPos, filler, filler, filler, filler, gravity, plate,
+                        rightLegPos, null, leftLegPos, filler, copy, paste, filler, filler, filler,
+                        null, equipment, null, filler, slot1, slot2, slot3, slot4, slot5
                 };
         menuInv.setContents(items);
     }
@@ -195,6 +142,10 @@ public class Menu {
         meta.setLore(loreList);
         icon.setItemMeta(meta);
         return icon;
+    }
+
+    private String cmd(String cmd) {
+        return Util.encodeHiddenLore("ase " + cmd);
     }
 
     private ItemStack createIcon(ItemStack icon, String name, String command, String option) {

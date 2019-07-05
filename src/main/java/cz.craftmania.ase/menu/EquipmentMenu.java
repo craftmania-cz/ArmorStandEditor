@@ -2,6 +2,7 @@ package cz.craftmania.ase.menu;
 
 import cz.craftmania.ase.PlayerEditor;
 import cz.craftmania.ase.Util;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
@@ -45,29 +46,24 @@ public class EquipmentMenu {
         meta.setLore(loreList);
         disabledIcon.setItemMeta(meta);
 
-        ItemStack helmetIcon = createIcon(Material.LEATHER_HELMET, "helm");
-        ItemStack chestIcon = createIcon(Material.LEATHER_CHESTPLATE, "chest");
-        ItemStack pantsIcon = createIcon(Material.LEATHER_LEGGINGS, "pants");
-        ItemStack feetsiesIcon = createIcon(Material.LEATHER_BOOTS, "boots");
-        ItemStack rightHandIcon = createIcon(Material.WOOD_SWORD, "rhand");
-        ItemStack leftHandIcon = createIcon(Material.SHIELD, "lhand");
+        //ItemStack helmetIcon = createIcon(Material.LEATHER_HELMET, "helm");
+        ItemStack helmetIcon = new ItemBuilder(Material.LEATHER_HELMET).setName("§f§lHlava")
+                .setLore("helm", Util.encodeHiddenLore("ase icon")).build();
+        ItemStack chestIcon = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§f§lTelo")
+                .setLore("chest", Util.encodeHiddenLore("ase icon")).build();
+        ItemStack pantsIcon = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lKalhoty")
+                .setLore("pants", Util.encodeHiddenLore("ase icon")).build();
+        ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§f§lBoty")
+                .setLore("boots", Util.encodeHiddenLore("ase icon")).build();
+        ItemStack rightHandIcon = new ItemBuilder(Material.WOOD_SWORD).setName("§f§lPrava ruka")
+                .setLore("rhand", Util.encodeHiddenLore("ase icon")).build();
+        ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§f§lLeva ruka")
+                .setLore("lhand", Util.encodeHiddenLore("ase icon")).build();
         ItemStack[] items =
                 {helmetIcon, chestIcon, pantsIcon, feetsiesIcon, rightHandIcon, leftHandIcon, disabledIcon, disabledIcon, disabledIcon,
                         helmet, chest, pants, feetsies, rightHand, leftHand, disabledIcon, disabledIcon, disabledIcon
                 };
         menuInv.setContents(items);
-    }
-
-    private ItemStack createIcon(Material mat, String slot) {
-        ItemStack icon = new ItemStack(mat);
-        ItemMeta meta = icon.getItemMeta();
-        meta.setDisplayName(slot); //equipslot.msg <option>
-        ArrayList<String> loreList = new ArrayList<String>();
-        loreList.add(slot); //equioslot.description.msg <option>
-        loreList.add(Util.encodeHiddenLore("ase icon"));
-        meta.setLore(loreList);
-        icon.setItemMeta(meta);
-        return icon;
     }
 
     public void open() {
