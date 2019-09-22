@@ -21,10 +21,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 //Manages PlayerEditors and Player Events related to editing armorstands
 public class PlayerEditorManager implements Listener {
@@ -60,8 +57,7 @@ public class PlayerEditorManager implements Listener {
                             e.setCancelled(true);
                             return;
                         }
-                        if (as.getName().contains("{") || as.getName().contains("}")
-                                || as.getCustomName().contains("{") || as.getCustomName().contains("}")) {
+                        if (as.getName().contains("{") || as.getName().contains("}")) {
                             player.sendMessage("§cTento ArmorStand nelze upravit!");
                             e.setCancelled(true);
                             return;
@@ -148,7 +144,8 @@ public class PlayerEditorManager implements Listener {
                     || e.getAction() == Action.LEFT_CLICK_BLOCK
                     || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Player player = e.getPlayer();
-                if (player.getInventory().getItemInMainHand() != null && player.getInventory().getItemInMainHand().getType() == plugin.editTool) {
+                player.getInventory().getItemInMainHand();
+                if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) {
                     e.setCancelled(true);
                     getPlayerEditor(player.getUniqueId()).openMenu();
                 }
