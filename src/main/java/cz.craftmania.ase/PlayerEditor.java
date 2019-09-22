@@ -137,6 +137,9 @@ public class PlayerEditor {
                 case EQUIPMENT:
                     openEquipment(armorStand);
                     break;
+                case GLOWING:
+                    toggleGlowing(armorStand);
+                    break;
                 case NONE:
                     this.getPlayer().sendMessage("§cTakovy mod neexistuje!");
                     break;
@@ -158,6 +161,14 @@ public class PlayerEditor {
     private void openEquipment(ArmorStand armorStand) {
         equipMenu = new EquipmentMenu(this, armorStand);
         equipMenu.open();
+    }
+
+    private void toggleGlowing(ArmorStand armorStand) {
+        if (!armorStand.isGlowing()) {
+            armorStand.setGlowing(true);
+            return;
+        }
+        armorStand.setGlowing(false);
     }
 
     private void resetPosition(ArmorStand armorStand) {
@@ -272,6 +283,7 @@ public class PlayerEditor {
             armorStand.setBasePlate(data.basePlate);
             armorStand.setArms(data.showArms);
             armorStand.setVisible(data.visible);
+            armorStand.setGlowing(data.isGlowing);
             if (this.getPlayer().getGameMode() == GameMode.CREATIVE) {
                 armorStand.setHelmet(data.head);
                 armorStand.setChestplate(data.body);
