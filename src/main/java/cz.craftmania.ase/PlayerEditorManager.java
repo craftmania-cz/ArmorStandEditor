@@ -82,8 +82,8 @@ public class PlayerEditorManager implements Listener {
                 if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) { // if holding the edit tool apply options to click armorstand
                     e.setCancelled(true);
                     ArmorStand as = (ArmorStand) e.getRightClicked();
-                    if (!as.isVisible()) {
-                        player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                    if (!as.isVisible() && !as.hasMetadata("ase")) {
+                        player.sendMessage("§cTento ArmorStand nelze upravit, jelikož nebyl upraven s ASE.");
                         e.setCancelled(true);
                         return;
                     }
@@ -98,8 +98,8 @@ public class PlayerEditorManager implements Listener {
                     ItemStack nameTag = player.getInventory().getItemInMainHand();
                     if (nameTag.hasItemMeta() && nameTag.getItemMeta().hasDisplayName()) {
                         ArmorStand as = (ArmorStand) e.getRightClicked();
-                        if (!as.isVisible()) {
-                            player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                        if (!as.isVisible() && !as.hasMetadata("ase")) {
+                            player.sendMessage("§cTento ArmorStand nelze upravit, jelikož nebyl upraven s ASE.");
                             e.setCancelled(true);
                             return;
                         }

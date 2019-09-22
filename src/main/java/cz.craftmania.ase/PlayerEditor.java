@@ -12,6 +12,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
@@ -108,7 +109,7 @@ public class PlayerEditor {
                     toggleSize(armorStand);
                     break;
                 case INVISIBLE:
-                    toggleVisible(armorStand);
+                    toggleVisible(armorStand, getPlayer());
                     break;
                 case BASEPLATE:
                     togglePlate(armorStand);
@@ -316,8 +317,14 @@ public class PlayerEditor {
         armorStand.setArms(Util.toggleFlag(armorStand.hasArms()));
     }
 
-    void toggleVisible(ArmorStand armorStand) {
-        armorStand.setVisible(Util.toggleFlag(armorStand.isVisible()));
+    void toggleVisible(ArmorStand armorStand, Player player) {
+        if (armorStand.isVisible()) {
+            armorStand.setMetadata("ase", new FixedMetadataValue(plugin, "invisible"));
+            armorStand.setVisible(false);
+            return;
+        }
+        armorStand.removeMetadata("ase", plugin);
+        armorStand.setVisible(true);
     }
 
     void toggleSize(ArmorStand armorStand) {
