@@ -76,7 +76,7 @@ public class Menu {
             showArms = new ItemBuilder(Material.STICK).setName("§b§lZobrazeni rukou")
                     .setLore(cmd("mode showarms")).build();
 
-            visibility = new ItemBuilder(Material.LINGERING_POTION).setName("§e§lViditelnost")
+            visibility = new ItemBuilder(Material.LINGERING_POTION).setName("§e§lViditelnost").hideAllFlags()
                     .setLore(cmd("mode invisible")).build();
 
             size = new ItemBuilder(Material.TROPICAL_FISH).setName("§c§lVelikost")

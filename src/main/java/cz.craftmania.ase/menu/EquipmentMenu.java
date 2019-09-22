@@ -47,17 +47,17 @@ public class EquipmentMenu {
         disabledIcon.setItemMeta(meta);
 
         //ItemStack helmetIcon = createIcon(Material.LEATHER_HELMET, "helm");
-        ItemStack helmetIcon = new ItemBuilder(Material.LEATHER_HELMET).setName("§f§lHlava")
+        ItemStack helmetIcon = new ItemBuilder(Material.LEATHER_HELMET).setName("§f§lHlava").hideAllFlags()
                 .setLore("helm", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack chestIcon = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§f§lTelo")
+        ItemStack chestIcon = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§f§lTelo").hideAllFlags()
                 .setLore("chest", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack pantsIcon = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lKalhoty")
+        ItemStack pantsIcon = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lKalhoty").hideAllFlags()
                 .setLore("pants", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§f§lBoty")
+        ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§f§lBoty").hideAllFlags()
                 .setLore("boots", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack rightHandIcon = new ItemBuilder(Material.WOODEN_SWORD).setName("§f§lPrava ruka")
+        ItemStack rightHandIcon = new ItemBuilder(Material.WOODEN_SWORD).setName("§f§lPrava ruka").hideAllFlags()
                 .setLore("rhand", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§f§lLeva ruka")
+        ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§f§lLeva ruka").hideAllFlags()
                 .setLore("lhand", Util.encodeHiddenLore("ase icon")).build();
         ItemStack[] items =
                 {helmetIcon, chestIcon, pantsIcon, feetsiesIcon, rightHandIcon, leftHandIcon, disabledIcon, disabledIcon, disabledIcon,
