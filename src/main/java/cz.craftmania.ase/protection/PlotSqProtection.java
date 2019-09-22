@@ -1,12 +1,11 @@
 package cz.craftmania.ase.protection;
 
+import com.github.intellectualsites.plotsquared.bukkit.BukkitMain;
+import com.github.intellectualsites.plotsquared.bukkit.util.BukkitUtil;
+import com.github.intellectualsites.plotsquared.plot.object.Location;
+import com.github.intellectualsites.plotsquared.plot.object.Plot;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-
-import com.intellectualcrafters.plot.PS;
-import com.intellectualcrafters.plot.object.Plot;
-import com.plotsquared.bukkit.BukkitMain;
-import com.plotsquared.bukkit.util.BukkitUtil;
 
 public class PlotSqProtection implements ASEProtection{
 
@@ -20,8 +19,8 @@ public class PlotSqProtection implements ASEProtection{
 	@Override
 	public boolean canEdit(Player player, ArmorStand armorstand) {
 		if(plotSqPlugin == null || !plotSqPlugin.isEnabled()) return true; 
-		if(!PS.get().hasPlotArea(player.getWorld().getName())) return true; //if the world isn't a plot world
-		com.intellectualcrafters.plot.object.Location location = BukkitUtil.getLocation(armorstand.getLocation());
+		//if(!PS.get().hasPlotArea(player.getWorld().getName())) return true; //if the world isn't a plot world
+		Location location = BukkitUtil.getLocation(armorstand.getLocation());
 		Plot plot = Plot.getPlot(location);
 		if(plot == null) return false;
 		if(plot.isDenied(player.getUniqueId())) return false;
