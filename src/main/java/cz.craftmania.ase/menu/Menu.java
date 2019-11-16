@@ -33,7 +33,7 @@ public class Menu {
                 rightArmPos = null, bodyPos = null, leftArmPos = null, reset = null, showArms = null, visibility = null, size = null,
                 rightLegPos = null, equipment = null, leftLegPos = null, disableSlots = null, gravity = null, plate = null, copy = null, paste = null, glowing = null,
                 slot1 = null, slot2 = null, slot3 = null, slot4 = null, slot5 = null, slot6 = null, slot7 = null, slot8 = null, slot9 = null,
-                filler = null, navod = null;
+                filler = null, navod = null, debug = null;
 
         if (pe.getPlayer().hasPermission("asedit.edit")) {
 
@@ -100,6 +100,9 @@ public class Menu {
             glowing = new ItemBuilder(Material.SPECTRAL_ARROW).setName("§e§lGlowing")
                     .setLore(cmd("mode glowing")).build();
 
+            debug = new ItemBuilder(Material.BLACK_DYE).setName("§7§lDebug info").hideAllFlags()
+                    .setLore(cmd("mode debug")).build();
+
             filler = new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setDurability((short)3).setName("§f").build();
         }
 
@@ -128,7 +131,7 @@ public class Menu {
         ItemStack[] items =
                 {       filler, filler, filler, filler, null, filler, filler, filler, filler,
                         xAxis, yAxis, zAxis, reset, filler, coarseAdj, fineAdj, rotate, place,
-                        null, headPos, null, null, filler, glowing, showArms, visibility, size,
+                        null, headPos, null, debug, filler, glowing, showArms, visibility, size,
                         rightArmPos, bodyPos, leftArmPos, filler, filler, filler, filler, gravity, plate,
                         rightLegPos, null, leftLegPos, filler, copy, paste, filler, filler, filler,
                         null, equipment, null, filler, slot1, slot2, slot3, slot4, slot5

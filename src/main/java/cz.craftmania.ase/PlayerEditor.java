@@ -17,6 +17,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -141,6 +142,9 @@ public class PlayerEditor {
                 case GLOWING:
                     toggleGlowing(armorStand);
                     break;
+                case DEBUG:
+                    debugInfo(armorStand, getPlayer());
+                    break;
                 case NONE:
                     this.getPlayer().sendMessage("§cTakovy mod neexistuje!");
                     break;
@@ -170,6 +174,19 @@ public class PlayerEditor {
             return;
         }
         armorStand.setGlowing(false);
+    }
+
+    private void debugInfo(ArmorStand armorStand, Player player) {
+        DecimalFormat value = new DecimalFormat("#.#");
+        player.sendMessage("§a§lArmorStand Debug Info:");
+        player.sendMessage("§7Position: §fX: " + value.format(armorStand.getLocation().getX()) + ", Y: " + value.format(armorStand.getLocation().getY()) + ", Z: " + value.format(armorStand.getLocation().getZ()));
+        player.sendMessage("§7Head rotation: §fX: " + value.format(armorStand.getHeadPose().getX()) + ", Y: " + value.format(armorStand.getHeadPose().getY()) + ", Z: " + value.format(armorStand.getHeadPose().getZ()));
+        player.sendMessage("§7Body rotation: §fX: " + value.format(armorStand.getBodyPose().getX()) + ", Y: " + value.format(armorStand.getBodyPose().getY()) + ", Z: " + value.format(armorStand.getBodyPose().getZ()));
+        player.sendMessage("§7Right hand: §fX:" + value.format(armorStand.getRightArmPose().getX()) + ", Y: " + value.format(armorStand.getRightArmPose().getY()) + ", Z: " + value.format(armorStand.getRightArmPose().getZ()));
+        player.sendMessage("§7Left hand: §fX: " + value.format(armorStand.getLeftArmPose().getX()) + ", Y: " + value.format(armorStand.getLeftArmPose().getY()) + ", Z: " + value.format(armorStand.getLeftArmPose().getZ()));
+        player.sendMessage("§7Right leg: §fX: " + value.format(armorStand.getRightLegPose().getX()) + ", Y: " + value.format(armorStand.getRightLegPose().getY()) + ", Z: " + value.format(armorStand.getRightLegPose().getZ()));
+        player.sendMessage("§7Left leg: §fX: " + value.format(armorStand.getLeftLegPose().getX()) + ", Y: " + value.format(armorStand.getLeftLegPose().getY()) + ", Z: " + value.format(armorStand.getLeftLegPose().getZ()));
+
     }
 
     private void resetPosition(ArmorStand armorStand) {
