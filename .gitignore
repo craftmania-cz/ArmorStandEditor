@@ -7,7 +7,7 @@ dependency-reduced-pom.xml
 target
 build
 
-.gradle/
+.gradle
 
 .DS_Store
 .bin
