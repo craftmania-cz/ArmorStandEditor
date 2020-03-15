@@ -1,5 +1,9 @@
 package cz.craftmania.ase.protection;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.regions.RegionQuery;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
@@ -17,10 +21,9 @@ public class WGProtection implements ASEProtection {
 	    if(player.hasPermission("ase.fullbypass")){
 	        return true;
         }
-		if(!wgPlugin.canBuild(player, armorstand.getLocation())){
-			return false;
-		}
-		return true;
+		RegionQuery query = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
+		com.sk89q.worldedit.util.Location loc = BukkitAdapter.adapt(armorstand.getLocation());
+		return query.testState(loc, WorldGuardPlugin.inst().wrapPlayer(player), Flags.BUILD);
 	}
 
 }
