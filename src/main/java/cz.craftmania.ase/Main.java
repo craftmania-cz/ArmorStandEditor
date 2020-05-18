@@ -1,7 +1,7 @@
 package cz.craftmania.ase;
 
 import com.bekvon.bukkit.residence.Residence;
-import com.github.intellectualsites.plotsquared.bukkit.BukkitMain;
+import com.plotsquared.bukkit.BukkitMain;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.wasteofplastic.askyblock.ASkyBlock;
 import cz.craftmania.ase.protection.ASEProtection;

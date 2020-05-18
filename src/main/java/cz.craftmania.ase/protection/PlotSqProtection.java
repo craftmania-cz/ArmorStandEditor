@@ -1,19 +1,18 @@
 package cz.craftmania.ase.protection;
 
-import com.github.intellectualsites.plotsquared.bukkit.BukkitMain;
-import com.github.intellectualsites.plotsquared.bukkit.util.BukkitUtil;
-import com.github.intellectualsites.plotsquared.plot.object.Location;
-import com.github.intellectualsites.plotsquared.plot.object.Plot;
+import com.plotsquared.bukkit.BukkitMain;
+import com.plotsquared.bukkit.util.BukkitUtil;
+import com.plotsquared.core.location.Location;
+import com.plotsquared.core.plot.Plot;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
 public class PlotSqProtection implements ASEProtection{
 
-	private BukkitMain plotSqPlugin;
+	private final BukkitMain plotSqPlugin;
 
 	public PlotSqProtection(BukkitMain plotSPlugin) {
 		this.plotSqPlugin = plotSPlugin;
-		
 	}
 	
 	@Override
