@@ -12,10 +12,12 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -108,7 +110,7 @@ public class PlayerEditor {
                     toggleSize(armorStand);
                     break;
                 case INVISIBLE:
-                    toggleVisible(armorStand);
+                    toggleVisible(armorStand, getPlayer());
                     break;
                 case BASEPLATE:
                     togglePlate(armorStand);
@@ -137,6 +139,12 @@ public class PlayerEditor {
                 case EQUIPMENT:
                     openEquipment(armorStand);
                     break;
+                case GLOWING:
+                    toggleGlowing(armorStand);
+                    break;
+                case DEBUG:
+                    debugInfo(armorStand, getPlayer());
+                    break;
                 case NONE:
                     this.getPlayer().sendMessage("§cTakovy mod neexistuje!");
                     break;
@@ -158,6 +166,27 @@ public class PlayerEditor {
     private void openEquipment(ArmorStand armorStand) {
         equipMenu = new EquipmentMenu(this, armorStand);
         equipMenu.open();
+    }
+
+    private void toggleGlowing(ArmorStand armorStand) {
+        if (!armorStand.isGlowing()) {
+            armorStand.setGlowing(true);
+            return;
+        }
+        armorStand.setGlowing(false);
+    }
+
+    private void debugInfo(ArmorStand armorStand, Player player) {
+        DecimalFormat value = new DecimalFormat("#.#");
+        player.sendMessage("§a§lArmorStand Debug Info:");
+        player.sendMessage("§7Position: §fX: " + value.format(armorStand.getLocation().getX()) + ", Y: " + value.format(armorStand.getLocation().getY()) + ", Z: " + value.format(armorStand.getLocation().getZ()));
+        player.sendMessage("§7Head rotation: §fX: " + value.format(armorStand.getHeadPose().getX()) + ", Y: " + value.format(armorStand.getHeadPose().getY()) + ", Z: " + value.format(armorStand.getHeadPose().getZ()));
+        player.sendMessage("§7Body rotation: §fX: " + value.format(armorStand.getBodyPose().getX()) + ", Y: " + value.format(armorStand.getBodyPose().getY()) + ", Z: " + value.format(armorStand.getBodyPose().getZ()));
+        player.sendMessage("§7Right hand: §fX:" + value.format(armorStand.getRightArmPose().getX()) + ", Y: " + value.format(armorStand.getRightArmPose().getY()) + ", Z: " + value.format(armorStand.getRightArmPose().getZ()));
+        player.sendMessage("§7Left hand: §fX: " + value.format(armorStand.getLeftArmPose().getX()) + ", Y: " + value.format(armorStand.getLeftArmPose().getY()) + ", Z: " + value.format(armorStand.getLeftArmPose().getZ()));
+        player.sendMessage("§7Right leg: §fX: " + value.format(armorStand.getRightLegPose().getX()) + ", Y: " + value.format(armorStand.getRightLegPose().getY()) + ", Z: " + value.format(armorStand.getRightLegPose().getZ()));
+        player.sendMessage("§7Left leg: §fX: " + value.format(armorStand.getLeftLegPose().getX()) + ", Y: " + value.format(armorStand.getLeftLegPose().getY()) + ", Z: " + value.format(armorStand.getLeftLegPose().getZ()));
+
     }
 
     private void resetPosition(ArmorStand armorStand) {
@@ -272,6 +301,7 @@ public class PlayerEditor {
             armorStand.setBasePlate(data.basePlate);
             armorStand.setArms(data.showArms);
             armorStand.setVisible(data.visible);
+            armorStand.setGlowing(data.isGlowing);
             if (this.getPlayer().getGameMode() == GameMode.CREATIVE) {
                 armorStand.setHelmet(data.head);
                 armorStand.setChestplate(data.body);
@@ -304,8 +334,14 @@ public class PlayerEditor {
         armorStand.setArms(Util.toggleFlag(armorStand.hasArms()));
     }
 
-    void toggleVisible(ArmorStand armorStand) {
-        armorStand.setVisible(Util.toggleFlag(armorStand.isVisible()));
+    void toggleVisible(ArmorStand armorStand, Player player) {
+        if (armorStand.isVisible()) {
+            armorStand.setMetadata("ase", new FixedMetadataValue(plugin, "invisible"));
+            armorStand.setVisible(false);
+            return;
+        }
+        armorStand.removeMetadata("ase", plugin);
+        armorStand.setVisible(true);
     }
 
     void toggleSize(ArmorStand armorStand) {

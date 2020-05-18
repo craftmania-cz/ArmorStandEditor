@@ -30,13 +30,14 @@ repositories {
 
 dependencies {
     // Spigot
-    compileOnly ('org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT') {
+    compileOnly ('org.spigotmc:spigot-api:1.14.2-R0.1-SNAPSHOT') {
         exclude group: 'net.md-5'
     }
-    compileOnly name: 'paper-1613'
-    compileOnly name: 'PlotSquared-Bukkit-17.12.09-59557cf-1945'
+    compileOnly name: 'paper-186'
+    compileOnly name: 'PlotSquared-Bukkit-5.11.1-Premium'
     compileOnly name: 'Residence4.8.5.0'
-    compileOnly name: 'worldguard-6.2.1'
+    compileOnly name: 'worldguard-7.0.3'
+    compileOnly name: 'worldedit-7.2.0'
     compileOnly name: 'Vault'
     compileOnly name: 'askyblock'
     

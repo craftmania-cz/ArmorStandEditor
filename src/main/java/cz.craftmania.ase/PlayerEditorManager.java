@@ -21,10 +21,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 //Manages PlayerEditors and Player Events related to editing armorstands
 public class PlayerEditorManager implements Listener {
@@ -60,8 +57,7 @@ public class PlayerEditorManager implements Listener {
                             e.setCancelled(true);
                             return;
                         }
-                        if (as.getName().contains("{") || as.getName().contains("}")
-                                || as.getCustomName().contains("{") || as.getCustomName().contains("}")) {
+                        if (as.getName().contains("{") || as.getName().contains("}")) {
                             player.sendMessage("§cTento ArmorStand nelze upravit!");
                             e.setCancelled(true);
                             return;
@@ -86,11 +82,11 @@ public class PlayerEditorManager implements Listener {
                 if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) { // if holding the edit tool apply options to click armorstand
                     e.setCancelled(true);
                     ArmorStand as = (ArmorStand) e.getRightClicked();
-                    if (!as.isVisible()) {
-                        player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                    /*if (!as.isVisible() && !as.hasMetadata("ase")) {
+                        player.sendMessage("§cTento ArmorStand nelze upravit, jelikož nebyl upraven s ASE.");
                         e.setCancelled(true);
                         return;
-                    }
+                    }*/
                     if (as.getName().contains("{") || as.getName().contains("}")) {
                         player.sendMessage("§cTento ArmorStand nelze upravit!");
                         e.setCancelled(true);
@@ -102,8 +98,13 @@ public class PlayerEditorManager implements Listener {
                     ItemStack nameTag = player.getInventory().getItemInMainHand();
                     if (nameTag.hasItemMeta() && nameTag.getItemMeta().hasDisplayName()) {
                         ArmorStand as = (ArmorStand) e.getRightClicked();
-                        if (!as.isVisible()) {
-                            player.sendMessage("§cArmorStand musi byt viditelny, aby sel upravit!");
+                        /*if (!as.isVisible() && !as.hasMetadata("ase")) {
+                            player.sendMessage("§cTento ArmorStand nelze upravit, jelikož nebyl upraven s ASE.");
+                            e.setCancelled(true);
+                            return;
+                        }*/
+                        if (as.getName().contains("{") || as.getName().contains("}")) {
+                            player.sendMessage("§cTento ArmorStand nelze upravit!");
                             e.setCancelled(true);
                             return;
                         }
@@ -148,7 +149,8 @@ public class PlayerEditorManager implements Listener {
                     || e.getAction() == Action.LEFT_CLICK_BLOCK
                     || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Player player = e.getPlayer();
-                if (player.getInventory().getItemInMainHand() != null && player.getInventory().getItemInMainHand().getType() == plugin.editTool) {
+                player.getInventory().getItemInMainHand();
+                if (player.getInventory().getItemInMainHand().getType() == plugin.editTool) {
                     e.setCancelled(true);
                     getPlayerEditor(player.getUniqueId()).openMenu();
                 }
@@ -186,7 +188,7 @@ public class PlayerEditorManager implements Listener {
             if (e.getInventory() == null) return;
             if (e.getInventory().getHolder() == null) return;
             if (!(e.getInventory().getHolder() instanceof ASEHolder)) return;
-            if (e.getInventory().getName().equals(Menu.getName())) {
+            if (e.getView().getTitle().equals(Menu.getName())) {
                 e.setCancelled(true);
                 ItemStack item = e.getCurrentItem();
                 if (item != null && item.hasItemMeta() && item.getItemMeta().hasLore()
@@ -198,7 +200,7 @@ public class PlayerEditorManager implements Listener {
                     return;
                 }
             }
-            if (e.getInventory().getName().equals(EquipmentMenu.getName())) {
+            if (e.getView().getTitle().equals(EquipmentMenu.getName())) {
                 ItemStack item = e.getCurrentItem();
                 if (item == null) return;
                 if (item.getItemMeta() == null) return;
@@ -218,7 +220,7 @@ public class PlayerEditorManager implements Listener {
             if (e.getInventory() == null) return;
             if (e.getInventory().getHolder() == null) return;
             if (!(e.getInventory().getHolder() instanceof ASEHolder)) return;
-            if (e.getInventory().getName().equals(EquipmentMenu.getName())) {
+            if (e.getView().getTitle().equals(EquipmentMenu.getName())) {
                 PlayerEditor pe = players.get(e.getPlayer().getUniqueId());
                 pe.equipMenu.equipArmorstand();
             }
