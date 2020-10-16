@@ -3,9 +3,7 @@ package cz.craftmania.ase;
 import com.bekvon.bukkit.residence.Residence;
 import com.plotsquared.bukkit.BukkitMain;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.wasteofplastic.askyblock.ASkyBlock;
 import cz.craftmania.ase.protection.ASEProtection;
-import cz.craftmania.ase.protection.ASkyblockProtection;
 import cz.craftmania.ase.protection.PlotSqProtection;
 import cz.craftmania.ase.protection.ResidenceProtection;
 import cz.craftmania.ase.protection.WGProtection;
@@ -54,10 +52,6 @@ public class Main extends JavaPlugin {
         if (isPluginEnabled("Residence")) {
             Plugin res = getServer().getPluginManager().getPlugin("Residence");
             if (res instanceof Residence) addProtection(new ResidenceProtection((Residence) res));
-        }
-        if (isPluginEnabled("ASkyBlock")) {
-            Plugin askyblock = getServer().getPluginManager().getPlugin("ASkyBlock");
-            if (askyblock instanceof ASkyBlock) addProtection(new ASkyblockProtection((ASkyBlock) askyblock));
         }
     }
 

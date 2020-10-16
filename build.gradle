@@ -30,16 +30,15 @@ repositories {
 
 dependencies {
     // Spigot
-    compileOnly ('org.spigotmc:spigot-api:1.14.2-R0.1-SNAPSHOT') {
+    compileOnly ('org.spigotmc:spigot-api:1.16.2-R0.1-SNAPSHOT') {
         exclude group: 'net.md-5'
     }
-    compileOnly name: 'paper-186'
+    compileOnly name: 'spigot-1.16.3'
     compileOnly name: 'PlotSquared-Bukkit-5.11.1-Premium'
     compileOnly name: 'Residence4.8.5.0'
     compileOnly name: 'worldguard-7.0.3'
     compileOnly name: 'worldedit-7.2.0'
     compileOnly name: 'Vault'
-    compileOnly name: 'askyblock'
     
     // CraftMania
     compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.0.14'
