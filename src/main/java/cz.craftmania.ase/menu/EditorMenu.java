@@ -97,10 +97,7 @@ public class EditorMenu implements InventoryProvider {
         contents.set(3, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
         contents.set(3, 5, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
         contents.set(3, 6, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(3, 7, ClickableItem.of(new ItemBuilder(Material.SHULKER_SHELL).setName("§fGravitace").setLore("§7Zapneš nebo vypneš gravitaci", "§cPozor! Armorstand může padat až do voidu.").build(), (clickEvent) -> {
-            Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.GRAVITY);
-            player.closeInventory();
-        }));
+        contents.set(3, 7, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
         contents.set(3, 8, ClickableItem.of(new ItemBuilder(Material.SMOOTH_STONE_SLAB).setName("§fPodstavec").setLore("§7Přepnutí zobrzení podstavce").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.BASEPLATE);
             player.closeInventory();

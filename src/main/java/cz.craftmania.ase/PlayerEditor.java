@@ -115,9 +115,9 @@ public class PlayerEditor {
                 case BASEPLATE:
                     togglePlate(armorStand);
                     break;
-                case GRAVITY:
+               /* case GRAVITY:
                     toggleGravity(armorStand);
-                    break;
+                    break;*/
                 case COPY:
                     copy(armorStand);
                     break;
