@@ -23,7 +23,7 @@ public class EquipmentMenu {
     public EquipmentMenu(PlayerEditor pe, ArmorStand as) {
         this.pe = pe;
         this.armorstand = as;
-        name = "Armorstand INV";
+        name = "Armorstand inventář";
         menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 18, name);
     }
 
@@ -47,17 +47,17 @@ public class EquipmentMenu {
         disabledIcon.setItemMeta(meta);
 
         //ItemStack helmetIcon = createIcon(Material.LEATHER_HELMET, "helm");
-        ItemStack helmetIcon = new ItemBuilder(Material.LEATHER_HELMET).setName("§f§lHlava").hideAllFlags()
+        ItemStack helmetIcon = new ItemBuilder(Material.LEATHER_HELMET).setName("§fHlava").hideAllFlags()
                 .setLore("helm", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack chestIcon = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§f§lTelo").hideAllFlags()
+        ItemStack chestIcon = new ItemBuilder(Material.LEATHER_CHESTPLATE).setName("§fTělo").hideAllFlags()
                 .setLore("chest", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack pantsIcon = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§f§lKalhoty").hideAllFlags()
+        ItemStack pantsIcon = new ItemBuilder(Material.LEATHER_LEGGINGS).setName("§fKalhoty").hideAllFlags()
                 .setLore("pants", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§f§lBoty").hideAllFlags()
+        ItemStack feetsiesIcon = new ItemBuilder(Material.LEATHER_BOOTS).setName("§fBoty").hideAllFlags()
                 .setLore("boots", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack rightHandIcon = new ItemBuilder(Material.WOODEN_SWORD).setName("§f§lPrava ruka").hideAllFlags()
+        ItemStack rightHandIcon = new ItemBuilder(Material.WOODEN_SWORD).setName("§fPravá ruka").hideAllFlags()
                 .setLore("rhand", Util.encodeHiddenLore("ase icon")).build();
-        ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§f§lLeva ruka").hideAllFlags()
+        ItemStack leftHandIcon = new ItemBuilder(Material.SHIELD).setName("§fLevá ruka").hideAllFlags()
                 .setLore("lhand", Util.encodeHiddenLore("ase icon")).build();
         ItemStack[] items =
                 {helmetIcon, chestIcon, pantsIcon, feetsiesIcon, rightHandIcon, leftHandIcon, disabledIcon, disabledIcon, disabledIcon,

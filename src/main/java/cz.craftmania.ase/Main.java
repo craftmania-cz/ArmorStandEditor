@@ -60,6 +60,10 @@ public class Main extends JavaPlugin {
         instance = null;
     }
 
+    public static Main getInstance() {
+        return instance;
+    }
+
     public boolean isPluginEnabled(String plugin) {
         return getServer().getPluginManager().isPluginEnabled(plugin);
     }
@@ -70,5 +74,9 @@ public class Main extends JavaPlugin {
 
     public ArrayList<ASEProtection> getProtections() {
         return protections;
+    }
+
+    public PlayerEditorManager getEditorManager() {
+        return editorManager;
     }
 }

@@ -41,5 +41,5 @@ dependencies {
     compileOnly name: 'Vault'
     
     // CraftMania
-    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.0.14'
+    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.3.0'
 }
