@@ -1,10 +1,10 @@
 name: ArmorStandEditor
 main: cz.craftmania.ase.Main
-version: 1.2.1
+version: 1.3.0
 description: Allows players to edit certain NBT tags of armorstands without any commands.
 softdepend: [WorldGuard,PlotSquared,Residence,WorldEdit]
 depend: [CraftCore]
-api-version: "1.13"
+api-version: "1.15"
 commands:
   ase:
     description: Changes the function of the armorstand edit tool.
