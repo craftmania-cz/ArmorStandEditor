@@ -3,7 +3,6 @@ package cz.craftmania.ase;
 import cz.craftmania.ase.menu.ASEHolder;
 import cz.craftmania.ase.menu.EditorMenu;
 import cz.craftmania.ase.menu.EquipmentMenu;
-import cz.craftmania.ase.menu.Menu;
 import cz.craftmania.craftcore.spigot.inventory.builder.SmartInventory;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -23,18 +22,21 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 //Manages PlayerEditors and Player Events related to editing armorstands
 public class PlayerEditorManager implements Listener {
 
-    private Main plugin;
     HashMap<UUID, PlayerEditor> players;
-    private ASEHolder pluginHolder = new ASEHolder();
     double coarseAdj;
     double fineAdj;
     double coarseMov;
     double fineMov;
+    private final Main plugin;
+    private final ASEHolder pluginHolder = new ASEHolder();
 
     public PlayerEditorManager(Main plugin) {
         this.plugin = plugin;

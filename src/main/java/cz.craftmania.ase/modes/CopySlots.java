@@ -3,8 +3,8 @@ package cz.craftmania.ase.modes;
 import org.bukkit.entity.ArmorStand;
 
 public class CopySlots {
-    ArmorStandData[] slots = new ArmorStandData[9];
     public byte currentSlot = 0;
+    ArmorStandData[] slots = new ArmorStandData[9];
 
     //returns true if parameters are acceptable, false otherwise.
     public boolean changeSlots(byte slot) {

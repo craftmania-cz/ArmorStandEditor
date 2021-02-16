@@ -2,11 +2,7 @@ package cz.craftmania.ase;
 
 import cz.craftmania.ase.menu.EquipmentMenu;
 import cz.craftmania.ase.menu.Menu;
-import cz.craftmania.ase.modes.AdjustmentMode;
-import cz.craftmania.ase.modes.ArmorStandData;
-import cz.craftmania.ase.modes.Axis;
-import cz.craftmania.ase.modes.CopySlots;
-import cz.craftmania.ase.modes.EditMode;
+import cz.craftmania.ase.modes.*;
 import cz.craftmania.ase.protection.ASEProtection;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -24,19 +20,19 @@ import java.util.UUID;
 public class PlayerEditor {
 
     public Main plugin;
-    private UUID uuid;
+    public EquipmentMenu equipMenu;
+    private final UUID uuid;
     private EditMode eMode;
     private AdjustmentMode adjMode;
-    private CopySlots copySlots;
+    private final CopySlots copySlots;
     private Axis axis;
     private double eulerAngleChange;
     private double degreeAngleChange;
     private double movChange;
-    private Menu chestMenu;
+    private final Menu chestMenu;
     private boolean cancelMenuOpen = false;
     private int uncancelTaskID = 0;
     private ArmorStand target;
-    public EquipmentMenu equipMenu;
     private ArrayList<ArmorStand> targetList = null;
     private int targetIndex = 0;
 
@@ -78,7 +74,7 @@ public class PlayerEditor {
 
     public void setCopySlot(byte slot) {
         copySlots.changeSlots(slot);
-        this.getPlayer().sendMessage("§eVybran kopirovaci slot: §6" + String.valueOf((slot + 1)));
+        this.getPlayer().sendMessage("§eVybran kopirovaci slot: §6" + (slot + 1));
     }
 
     public void editArmorStand(ArmorStand armorStand) {

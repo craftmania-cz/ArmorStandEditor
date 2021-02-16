@@ -16,14 +16,17 @@ import java.util.ArrayList;
 public class Main extends JavaPlugin {
 
     private static Main instance;
-
-    private CommandEx execute;
     public PlayerEditorManager editorManager;
     public Material editTool;
     boolean debug = false; //weather or not to broadcast messages via print(String message)
     double coarseRot;
     double fineRot;
+    private CommandEx execute;
     private ArrayList<ASEProtection> protections;
+
+    public static Main getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -58,10 +61,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
-    }
-
-    public static Main getInstance() {
-        return instance;
     }
 
     public boolean isPluginEnabled(String plugin) {

@@ -5,7 +5,7 @@ public enum EditMode {
     HEAD("Head"), BODY("Body"), LEFTARM("LeftArm"), RIGHTARM("RightArm"), LEFTLEG("LeftLeg"), RIGHTLEG("RightLeg"), GLOWING("Glowing"),
     PLACEMENT("Placement"), DISABLESLOTS("DisableSlots"), ROTATE("Rotate"), TARGET("Target"), EQUIPMENT("Equipment"), RESET("Reset"), DEBUG("Debug");
 
-    private String name;
+    private final String name;
 
     EditMode(String name) {
         this.name = name;
