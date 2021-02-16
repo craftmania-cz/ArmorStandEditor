@@ -3,13 +3,13 @@ package cz.craftmania.ase;
 import com.bekvon.bukkit.residence.Residence;
 import com.plotsquared.bukkit.BukkitMain;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import cz.craftmania.ase.protection.ASEProtection;
-import cz.craftmania.ase.protection.PlotSqProtection;
-import cz.craftmania.ase.protection.ResidenceProtection;
-import cz.craftmania.ase.protection.WGProtection;
+import cz.craftmania.ase.protection.*;
+import me.angeschossen.lands.Lands;
+import me.angeschossen.lands.api.integration.LandsIntegration;
 import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import world.bentobox.bentobox.BentoBox;
 
 import java.util.ArrayList;
 
@@ -55,6 +55,14 @@ public class Main extends JavaPlugin {
         if (isPluginEnabled("Residence")) {
             Plugin res = getServer().getPluginManager().getPlugin("Residence");
             if (res instanceof Residence) addProtection(new ResidenceProtection((Residence) res));
+        }
+        if (isPluginEnabled("Lands")) {
+            Plugin lands = getServer().getPluginManager().getPlugin("Lands");
+            if (lands instanceof Lands) addProtection(new LandsProtection(new LandsIntegration(this)));
+        }
+        if (isPluginEnabled("BentoBox")) {
+            Plugin bentoBox = getServer().getPluginManager().getPlugin("BentoBox");
+            if (bentoBox instanceof BentoBox) addProtection(new BSkyBlockProtection());
         }
     }
 

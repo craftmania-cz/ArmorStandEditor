@@ -9,6 +9,7 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
 public class WGProtection implements ASEProtection {
+
     private final WorldGuardPlugin wgPlugin;
 
     public WGProtection(WorldGuardPlugin wgplugin) {
@@ -20,8 +21,10 @@ public class WGProtection implements ASEProtection {
         if (player.hasPermission("ase.fullbypass")) {
             return true;
         }
+
         RegionQuery query = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
         com.sk89q.worldedit.util.Location loc = BukkitAdapter.adapt(armorstand.getLocation());
+
         return query.testState(loc, WorldGuardPlugin.inst().wrapPlayer(player), Flags.BUILD);
     }
 

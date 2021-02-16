@@ -5,7 +5,12 @@ import org.bukkit.entity.Player;
 
 public interface ASEProtection {
 
-    //determines if a protection plugin should allow editing for the given ArmorStand by the given Player
-    // return true if editing should be allowed, return false if not
+    /**
+     * Determines whether a protection plugin should
+     * allow editing the given {@link ArmorStand} by given {@link Player}.
+     * @param player Target Player
+     * @param armorstand Target ArmorStand
+     * @return True if editing should be allowed, false if not.
+     */
 	boolean canEdit(Player player, ArmorStand armorstand);
 }

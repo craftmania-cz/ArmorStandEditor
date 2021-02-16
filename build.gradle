@@ -34,11 +34,14 @@ dependencies {
         exclude group: 'net.md-5'
     }
     compileOnly name: 'spigot-1.16.3'
-    compileOnly name: 'PlotSquared-Bukkit-5.11.1-Premium'
-    compileOnly name: 'Residence4.8.5.0'
+    compileOnly name: 'PlotSquared-Bukkit-5.13.10-Premium'
+    compileOnly name: 'Residence4.9.2.4'
     compileOnly name: 'worldguard-7.0.3'
     compileOnly name: 'worldedit-7.2.0'
     compileOnly name: 'Vault'
+    compileOnly name: 'Lands-5.1.1'
+    compileOnly name: 'BSkyBlock-1.14.3'
+    compileOnly name: 'BentoBox-1.15.5'
     
     // CraftMania
     compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.3.0'

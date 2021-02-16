@@ -18,11 +18,13 @@ public class PlotSqProtection implements ASEProtection {
     @Override
     public boolean canEdit(Player player, ArmorStand armorstand) {
         if (plotSqPlugin == null || !plotSqPlugin.isEnabled()) return true;
-        //if(!PS.get().hasPlotArea(player.getWorld().getName())) return true; //if the world isn't a plot world
+
         Location location = BukkitUtil.getLocation(armorstand.getLocation());
         Plot plot = Plot.getPlot(location);
+
         if (plot == null) return false;
         if (plot.isDenied(player.getUniqueId())) return false;
+
 		return plot.isOwner(player.getUniqueId()) || plot.isAdded(player.getUniqueId());
 	}
 }

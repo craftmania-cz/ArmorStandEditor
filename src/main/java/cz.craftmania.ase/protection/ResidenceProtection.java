@@ -1,6 +1,7 @@
 package cz.craftmania.ase.protection;
 
 import com.bekvon.bukkit.residence.Residence;
+import com.bekvon.bukkit.residence.containers.Flags;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import org.bukkit.Location;
@@ -18,12 +19,15 @@ public class ResidenceProtection implements ASEProtection {
     public boolean canEdit(Player player, ArmorStand armorstand) {
         if (residencePlugin == null || !residencePlugin.isEnabled()) return true;
         if (Residence.getInstance().getResidenceManager() == null) return true;
+
         Location loc = armorstand.getLocation();
         ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(loc);
         FlagPermissions perms = Residence.getInstance().getPermsByLoc(loc);
+
         if (perms == null) return true;
         if (res == null) return true;
+
         return res.getPermissions().getOwnerUUID().equals(player.getUniqueId()) ||
-                (perms.playerHas(player.getName(), loc.getWorld().getName(), "destroy", false) && perms.playerHas(player.getName(), loc.getWorld().getName(), "destroy", false));
+                (perms.playerHas(player, loc.getWorld().getName(), Flags.destroy, false) && perms.playerHas(player, loc.getWorld().getName(), Flags.destroy, false));
     }
 }
