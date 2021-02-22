@@ -1,3 +1,9 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 apply plugin: 'maven'
 
@@ -24,6 +30,7 @@ task compilePlugin(type: Jar) {
 repositories {
     flatDir { dirs 'lib' }
     mavenCentral()
+    jcenter()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "https://packages.craftmania.cz/repository/craftmania/" }
 }
