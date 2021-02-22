@@ -69,12 +69,12 @@ public class PlayerEditor {
             movChange = getManager().fineMov;
         }
         degreeAngleChange = eulerAngleChange / Math.PI * 180;
-        this.getPlayer().sendMessage("§eRozliseni nastaveno na: §6" + adjMode.toString().toLowerCase());
+        this.getPlayer().sendMessage("§eRozlišení nastaveno na: §6" + adjMode.toString().toLowerCase());
     }
 
     public void setCopySlot(byte slot) {
         copySlots.changeSlots(slot);
-        this.getPlayer().sendMessage("§eVybran kopirovaci slot: §6" + (slot + 1));
+        this.getPlayer().sendMessage("§eVybrán kopírovací slot: §6" + (slot + 1));
     }
 
     public void editArmorStand(ArmorStand armorStand) {
@@ -142,11 +142,11 @@ public class PlayerEditor {
                     debugInfo(armorStand, getPlayer());
                     break;
                 case NONE:
-                    this.getPlayer().sendMessage("§cTakovy mod neexistuje!");
+                    this.getPlayer().sendMessage("§cTakový mod neexistuje!");
                     break;
             }
         } else {
-            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
+            this.getPlayer().sendMessage("§cZde nemáš právo stavět/upravovat armorstandy!");
         }
     }
 
@@ -226,7 +226,7 @@ public class PlayerEditor {
                     editArmorStand(armorStand);
             }
         } else {
-            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
+            this.getPlayer().sendMessage("§cZde nemáš právo stavět/upravovat armorstandy!");
         }
     }
 
@@ -278,7 +278,7 @@ public class PlayerEditor {
 
     private void copy(ArmorStand armorStand) {
         copySlots.copyDataToSlot(armorStand);
-        this.getPlayer().sendMessage("§eStav armorstandu okopirovan do slotu: §6" + (copySlots.currentSlot + 1));
+        this.getPlayer().sendMessage("§eStav armorstandu okopírován do slotu: §6" + (copySlots.currentSlot + 1));
         setMode(EditMode.PASTE);
     }
 
@@ -306,9 +306,9 @@ public class PlayerEditor {
                 armorStand.setItemInHand(data.rightHand);
                 armorStand.getEquipment().setItemInOffHand(data.leftHand);
             }
-            this.getPlayer().sendMessage("§eNastaveni bylo okopirovano z slotu: §6" + (copySlots.currentSlot + 1));
+            this.getPlayer().sendMessage("§eNastavení bylo okopírováno z slotu: §6" + (copySlots.currentSlot + 1));
         } else {
-            this.getPlayer().sendMessage("§cZde nemas pravo stavet/upravovat armorstandy!");
+            this.getPlayer().sendMessage("§cZde nemáš právo stavět/upravovat armorstandy!");
         }
     }
 
@@ -392,14 +392,14 @@ public class PlayerEditor {
         if (armorStands == null || armorStands.isEmpty()) {
             target = null;
             targetList = null;
-            this.getPlayer().sendMessage("§eVyber armorstandu je odemknut!");
+            this.getPlayer().sendMessage("§eVýběr armorstandu je odemknut!");
             return;
         }
 
         if (targetList == null) {
             targetList = armorStands;
             targetIndex = 0;
-            this.getPlayer().sendMessage("§eVyber armorstandu je uzamknut Nyni budes upravovat pouze tento!");
+            this.getPlayer().sendMessage("§eVýběr armorstandu je uzamknut. Nyní budeš upravovat pouze tento!");
         } else {
             boolean same = targetList.size() == armorStands.size();
             if (same) for (ArmorStand as : armorStands) {
@@ -412,7 +412,7 @@ public class PlayerEditor {
             } else {
                 targetList = armorStands;
                 targetIndex = 0;
-                this.getPlayer().sendMessage("§eVyber armorstandu je uzamknut Nyni budes upravovat pouze tento!");
+                this.getPlayer().sendMessage("§eVýběr armorstandu je uzamknut. Nyní budeš upravovat pouze tento!");
             }
         }
         target = targetList.get(targetIndex);
