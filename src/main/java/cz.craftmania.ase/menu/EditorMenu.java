@@ -23,7 +23,7 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setAxis(Axis.X);
             player.closeInventory();
         }));
-        contents.set(1,1, ClickableItem.of(new ItemBuilder(Material.GREEN_TERRACOTTA).setName("§aOsa Y").setLore("§7Kliknuím budeš měnit osu Y", "§7Nezapomeň zvolit mód níže.").build(), (clickEvent) -> {
+        contents.set(1, 1, ClickableItem.of(new ItemBuilder(Material.GREEN_TERRACOTTA).setName("§aOsa Y").setLore("§7Kliknuím budeš měnit osu Y", "§7Nezapomeň zvolit mód níže.").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setAxis(Axis.Y);
             player.closeInventory();
         }));
@@ -35,7 +35,8 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.RESET);
             player.closeInventory();
         }));
-        contents.set(1, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(1, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
         contents.set(1, 5, ClickableItem.of(new ItemBuilder(Material.DIRT).setName("§eHrubé nastavení").setLore("§7Větší rozestup mezi úpravami").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setAdjMode(AdjustmentMode.COARSE);
             player.closeInventory();
@@ -62,7 +63,8 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.DEBUG);
             player.closeInventory();
         }));
-        contents.set(2, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(2, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
         contents.set(2, 5, ClickableItem.of(new ItemBuilder(Material.SPECTRAL_ARROW).setName("§eGlowing").setLore("§7Zobrazení ohraničení").build(), (clickEvent -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.GLOWING);
             player.closeInventory();
@@ -93,11 +95,16 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.RIGHTARM);
             player.closeInventory();
         }));
-        contents.set(3, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(3, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(3, 5, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(3, 6, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(3, 7, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(3, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(3, 4, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(3, 5, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(3, 6, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(3, 7, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
         contents.set(3, 8, ClickableItem.of(new ItemBuilder(Material.SMOOTH_STONE_SLAB).setName("§fPodstavec").setLore("§7Přepnutí zobrzení podstavce").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.BASEPLATE);
             player.closeInventory();
@@ -112,7 +119,8 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.RIGHTLEG);
             player.closeInventory();
         }));
-        contents.set(4, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(4, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
         contents.set(4, 4, ClickableItem.of(new ItemBuilder(Material.WRITABLE_BOOK).setName("§aKopírovat").setLore("§7Okopíruješ aktuální nastavení armorstandu").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.COPY);
             player.closeInventory();
@@ -121,16 +129,20 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.PASTE);
             player.closeInventory();
         }));
-        contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(4, 7, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
-        contents.set(4, 8, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(4, 7, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
+        contents.set(4, 8, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
 
         // 6. řádek
         contents.set(5, 1, ClickableItem.of(new ItemBuilder(Material.CHEST).setName("§eInventář").setLore("§7Správa inventáře, druhé ruky atd.").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setMode(EditMode.EQUIPMENT);
             player.closeInventory();
         }));
-        contents.set(5, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {}));
+        contents.set(5, 3, ClickableItem.of(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build(), (clickEvent) -> {
+        }));
         contents.set(5, 4, ClickableItem.of(new ItemBuilder(Material.YELLOW_CONCRETE_POWDER).setName("§aSlot 1").build(), (clickEvent) -> {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setCopySlot((byte) 1);
             player.closeInventory();
@@ -151,10 +163,6 @@ public class EditorMenu implements InventoryProvider {
             Main.getInstance().getEditorManager().getPlayerEditor(player.getUniqueId()).setCopySlot((byte) 5);
             player.closeInventory();
         }));
-
-
-
-
 
 
     }

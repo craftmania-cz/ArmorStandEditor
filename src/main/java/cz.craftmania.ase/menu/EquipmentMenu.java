@@ -14,17 +14,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class EquipmentMenu {
-    Inventory menuInv;
-    private PlayerEditor pe;
-    private ArmorStand armorstand;
     static String name = "ArmorStand Equipment";
+    Inventory menuInv;
     ItemStack helmet, chest, pants, feetsies, rightHand, leftHand;
+    private final PlayerEditor pe;
+    private final ArmorStand armorstand;
 
     public EquipmentMenu(PlayerEditor pe, ArmorStand as) {
         this.pe = pe;
         this.armorstand = as;
         name = "Armorstand inventář";
         menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 18, name);
+    }
+
+    public static String getName() {
+        return name;
     }
 
     private void fillInventory() {
@@ -84,9 +88,5 @@ public class EquipmentMenu {
         armorstand.setBoots(feetsies);
         armorstand.getEquipment().setItemInMainHand(rightHand);
         armorstand.getEquipment().setItemInOffHand(leftHand);
-    }
-
-    public static String getName() {
-        return name;
     }
 }

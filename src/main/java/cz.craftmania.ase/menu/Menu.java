@@ -8,22 +8,23 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 
 public class Menu {
-    Inventory menuInv;
-    private PlayerEditor pe;
     static String name = "Armor Stand Editor Menu";
+    Inventory menuInv;
+    private final PlayerEditor pe;
 
     public Menu(PlayerEditor pe) {
         this.pe = pe;
         name = "ArmorStandEditor";
         menuInv = Bukkit.createInventory(pe.getManager().getPluginHolder(), 54, name);
         fillInventory();
+    }
+
+    public static String getName() {
+        return name;
     }
 
     private void fillInventory() {
@@ -103,7 +104,7 @@ public class Menu {
             debug = new ItemBuilder(Material.BLACK_DYE).setName("§7§lDebug info").hideAllFlags()
                     .setLore(cmd("mode debug")).build();
 
-            filler = new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setDurability((short)3).setName("§f").build();
+            filler = new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setDurability((short) 3).setName("§f").build();
         }
 
         if (pe.getPlayer().hasPermission("asedit.copy")) {
@@ -116,20 +117,20 @@ public class Menu {
             slot1 = new ItemBuilder(Material.DANDELION).setName("§e§lSlot 1")
                     .setLore(cmd("slot 1")).build();
 
-            slot2 = new ItemBuilder(Material.POPPY, 2).setName("§e§lSlot 2").setDurability((short)3)
+            slot2 = new ItemBuilder(Material.POPPY, 2).setName("§e§lSlot 2").setDurability((short) 3)
                     .setLore(cmd("slot 2")).build();
 
-            slot3 = new ItemBuilder(Material.BLUE_ORCHID, 3).setName("§e§lSlot 3").setDurability((short)1)
+            slot3 = new ItemBuilder(Material.BLUE_ORCHID, 3).setName("§e§lSlot 3").setDurability((short) 1)
                     .setLore(cmd("slot 3")).build();
 
-            slot4 = new ItemBuilder(Material.WHITE_TULIP, 4).setName("§e§lSlot 4").setDurability((short)5)
+            slot4 = new ItemBuilder(Material.WHITE_TULIP, 4).setName("§e§lSlot 4").setDurability((short) 5)
                     .setLore(cmd("slot 4")).build();
 
-            slot5 = new ItemBuilder(Material.WITHER_ROSE, 5).setName("§e§lSlot 4").setDurability((short)6)
+            slot5 = new ItemBuilder(Material.WITHER_ROSE, 5).setName("§e§lSlot 4").setDurability((short) 6)
                     .setLore(cmd("slot 5")).build();
         }
         ItemStack[] items =
-                {       filler, filler, filler, filler, null, filler, filler, filler, filler,
+                {filler, filler, filler, filler, null, filler, filler, filler, filler,
                         xAxis, yAxis, zAxis, reset, filler, coarseAdj, fineAdj, rotate, place,
                         null, headPos, null, debug, filler, glowing, showArms, visibility, size,
                         rightArmPos, bodyPos, leftArmPos, filler, filler, filler, filler, gravity, plate,
@@ -170,9 +171,5 @@ public class Menu {
             fillInventory();
             pe.getPlayer().openInventory(menuInv);
         }
-    }
-
-    public static String getName() {
-        return name;
     }
 }

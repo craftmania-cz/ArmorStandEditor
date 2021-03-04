@@ -3,27 +3,30 @@ package cz.craftmania.ase;
 import com.bekvon.bukkit.residence.Residence;
 import com.plotsquared.bukkit.BukkitMain;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import cz.craftmania.ase.protection.ASEProtection;
-import cz.craftmania.ase.protection.PlotSqProtection;
-import cz.craftmania.ase.protection.ResidenceProtection;
-import cz.craftmania.ase.protection.WGProtection;
+import cz.craftmania.ase.protection.*;
+import me.angeschossen.lands.api.integration.LandsIntegration;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import world.bentobox.bentobox.BentoBox;
 
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
 
     private static Main instance;
-
-    private CommandEx execute;
     public PlayerEditorManager editorManager;
     public Material editTool;
     boolean debug = false; //weather or not to broadcast messages via print(String message)
     double coarseRot;
     double fineRot;
+    private CommandEx execute;
     private ArrayList<ASEProtection> protections;
+
+    public static Main getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -40,28 +43,14 @@ public class Main extends JavaPlugin {
         getCommand("ase").setExecutor(execute);
         getServer().getPluginManager().registerEvents(editorManager, this);
 
-        protections = new ArrayList<ASEProtection>();
-        if (isPluginEnabled("WorldGuard")) {
-            WorldGuardPlugin wgPlugin = (WorldGuardPlugin) getServer().getPluginManager().getPlugin("WorldGuard");
-            addProtection(new WGProtection(wgPlugin));
-        }
-        if (isPluginEnabled("PlotSquared")) {
-            Plugin plotSqPlugin = getServer().getPluginManager().getPlugin("PlotSquared");
-            if (plotSqPlugin instanceof BukkitMain) addProtection(new PlotSqProtection((BukkitMain) plotSqPlugin));
-        }
-        if (isPluginEnabled("Residence")) {
-            Plugin res = getServer().getPluginManager().getPlugin("Residence");
-            if (res instanceof Residence) addProtection(new ResidenceProtection((Residence) res));
-        }
+        protections = new ArrayList<>();
+
+        Bukkit.getScheduler().runTaskLater(this, this::integrateProtections, 1);
     }
 
     @Override
     public void onDisable() {
         instance = null;
-    }
-
-    public static Main getInstance() {
-        return instance;
     }
 
     public boolean isPluginEnabled(String plugin) {
@@ -78,5 +67,50 @@ public class Main extends JavaPlugin {
 
     public PlayerEditorManager getEditorManager() {
         return editorManager;
+    }
+
+    private void integrateProtections() {
+        if (isPluginEnabled("WorldGuard")) {
+            getLogger().info("Registering WorldGuard as protection plugin.");
+
+            WorldGuardPlugin wgPlugin = (WorldGuardPlugin) getServer().getPluginManager().getPlugin("WorldGuard");
+            addProtection(new WGProtection(wgPlugin));
+        }
+
+        if (isPluginEnabled("PlotSquared")) {
+            getLogger().info("Registering PlotSquared as protection plugin.");
+
+            Plugin plotSqPlugin = getServer().getPluginManager().getPlugin("PlotSquared");
+            if (plotSqPlugin instanceof BukkitMain) addProtection(new PlotSqProtection((BukkitMain) plotSqPlugin));
+        }
+
+        if (isPluginEnabled("Residence")) {
+            getLogger().info("Registering Residence as protection plugin.");
+
+            Plugin res = getServer().getPluginManager().getPlugin("Residence");
+            if (res instanceof Residence) addProtection(new ResidenceProtection((Residence) res));
+        }
+
+        if (isPluginEnabled("Lands")) {
+            getLogger().info("Registering Lands as protection plugin.");
+
+            addProtection(new LandsProtection(new LandsIntegration(this)));
+        }
+
+        if (isPluginEnabled("BentoBox")) {
+            getLogger().info("Registering BentoBox as protection plugin.");
+
+            Plugin bentoBox = getServer().getPluginManager().getPlugin("BentoBox");
+            if (bentoBox instanceof BentoBox) addProtection(new BSkyBlockProtection());
+        }
+
+        if (isPluginEnabled("UltraMinions")) {
+            getLogger().info("Registering UltraMinions as plugin.");
+
+            Plugin ultraMinions = getServer().getPluginManager().getPlugin("UltraMinions");
+            addProtection(new UltraMinionsProtection((io.github.Leonardo0013YT.UltraMinions.Main) ultraMinions));
+        }
+
+
     }
 }
