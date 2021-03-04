@@ -49,6 +49,7 @@ dependencies {
     compileOnly name: 'Lands-5.1.1'
     compileOnly name: 'BSkyBlock-1.14.3'
     compileOnly name: 'BentoBox-1.15.5'
+    compileOnly name: 'UltraMinions_1_13+'
     
     // CraftMania
     compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.3.0'

@@ -4,7 +4,6 @@ import com.bekvon.bukkit.residence.Residence;
 import com.plotsquared.bukkit.BukkitMain;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import cz.craftmania.ase.protection.*;
-import me.angeschossen.lands.Lands;
 import me.angeschossen.lands.api.integration.LandsIntegration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -104,5 +103,14 @@ public class Main extends JavaPlugin {
             Plugin bentoBox = getServer().getPluginManager().getPlugin("BentoBox");
             if (bentoBox instanceof BentoBox) addProtection(new BSkyBlockProtection());
         }
+
+        if (isPluginEnabled("UltraMinions")) {
+            getLogger().info("Registering UltraMinions as plugin.");
+
+            Plugin ultraMinions = getServer().getPluginManager().getPlugin("UltraMinions");
+            addProtection(new UltraMinionsProtection((io.github.Leonardo0013YT.UltraMinions.Main) ultraMinions));
+        }
+
+
     }
 }

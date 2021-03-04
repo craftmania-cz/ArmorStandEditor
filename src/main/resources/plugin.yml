@@ -9,6 +9,7 @@ softdepend:
   - "WorldEdit"
   - "Lands"
   - "BentoBox"
+  - "UltraMinions"
 depend: [CraftCore]
 api-version: "1.15"
 commands:
