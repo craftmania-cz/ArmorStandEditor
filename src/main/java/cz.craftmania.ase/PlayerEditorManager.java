@@ -3,7 +3,7 @@ package cz.craftmania.ase;
 import cz.craftmania.ase.menu.ASEHolder;
 import cz.craftmania.ase.menu.EditorMenu;
 import cz.craftmania.ase.menu.EquipmentMenu;
-import cz.craftmania.craftcore.spigot.inventory.builder.SmartInventory;
+import cz.craftmania.craftcore.inventory.builder.SmartInventory;
 import io.github.Leonardo0013YT.UltraMinions.api.UltraMinionsAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;

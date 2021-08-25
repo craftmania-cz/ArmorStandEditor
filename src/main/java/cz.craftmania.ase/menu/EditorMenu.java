@@ -4,10 +4,10 @@ import cz.craftmania.ase.Main;
 import cz.craftmania.ase.modes.AdjustmentMode;
 import cz.craftmania.ase.modes.Axis;
 import cz.craftmania.ase.modes.EditMode;
-import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
-import cz.craftmania.craftcore.spigot.inventory.builder.ClickableItem;
-import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryContents;
-import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryProvider;
+import cz.craftmania.craftcore.builders.items.ItemBuilder;
+import cz.craftmania.craftcore.inventory.builder.ClickableItem;
+import cz.craftmania.craftcore.inventory.builder.content.InventoryContents;
+import cz.craftmania.craftcore.inventory.builder.content.InventoryProvider;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
