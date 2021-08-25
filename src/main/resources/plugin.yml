@@ -1,6 +1,6 @@
 name: ArmorStandEditor
 main: cz.craftmania.ase.Main
-version: 1.3.0
+version: 1.4.0
 description: Allows players to edit certain NBT tags of armorstands without any commands.
 softdepend:
   - "WorldGuard"
@@ -11,7 +11,7 @@ softdepend:
   - "BentoBox"
   - "UltraMinions"
 depend: [CraftCore]
-api-version: "1.15"
+api-version: "1.16"
 commands:
   ase:
     description: Changes the function of the armorstand edit tool.
