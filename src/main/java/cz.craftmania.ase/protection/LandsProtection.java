@@ -1,8 +1,10 @@
 package cz.craftmania.ase.protection;
 
+import me.angeschossen.lands.api.flags.enums.FlagTarget;
+import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
+import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.integration.LandsIntegration;
 import me.angeschossen.lands.api.land.Area;
-import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -25,6 +27,10 @@ public class LandsProtection implements ASEProtection {
         final Area area = landsIntegration.getAreaByLoc(location);
         if (area == null) return true;
 
-        return area.canSetting(player.getUniqueId(), RoleSetting.BLOCK_BREAK);
+        return area.hasRoleFlag(
+                player.getUniqueId(),
+                RoleFlag.of(landsIntegration, FlagTarget.PLAYER, RoleFlagCategory.ACTION,
+                        "block_break")
+        );
     }
 }

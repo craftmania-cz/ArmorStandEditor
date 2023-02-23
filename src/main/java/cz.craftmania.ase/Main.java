@@ -111,6 +111,11 @@ public class Main extends JavaPlugin {
             addProtection(new UltraMinionsProtection((io.github.Leonardo0013YT.UltraMinions.Main) ultraMinions));
         }
 
+        if (isPluginEnabled("SuperiorSkyblock2")) {
+            getLogger().info("Registering SuperiorSkyblock2 as plugin.");
+            addProtection(new SuperiorSkyblock2Protection());
+        }
+
 
     }
 }
