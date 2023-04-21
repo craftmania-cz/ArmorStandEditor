@@ -27,10 +27,6 @@ public class LandsProtection implements ASEProtection {
         final Area area = landsIntegration.getAreaByLoc(location);
         if (area == null) return true;
 
-        return area.hasRoleFlag(
-                player.getUniqueId(),
-                RoleFlag.of(landsIntegration, FlagTarget.PLAYER, RoleFlagCategory.ACTION,
-                        "block_break")
-        );
+        return area.isTrusted(player.getUniqueId());
     }
 }
