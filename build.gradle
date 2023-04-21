@@ -7,7 +7,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 
 group = 'cz.craftmania.ase'
-version = '1.4.0'
+version = '1.4.1'
 
 description = """"""
 
@@ -26,10 +26,14 @@ repositories {
     mavenCentral()
     maven { url "https://papermc.io/repo/repository/maven-public/" }
     maven {
-        url "https://maven.pkg.github.com/craftmania-cz/craftcore"
-        credentials {
-            username = GPR_USER
-            password = GPR_TOKEN
+        url "https://gitlab.com/api/v4/groups/craftmania/-/packages/maven"
+        name "GitLab"
+        credentials(HttpHeaderCredentials) {
+            name = 'Private-Token'
+            value = GITLAB_TOKEN
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
         }
     }
 }
@@ -43,11 +47,12 @@ dependencies {
     compileOnly name: 'worldguard-7.0.3'
     compileOnly name: 'worldedit-7.2.0'
     compileOnly name: 'Vault'
-    compileOnly name: 'Lands-5.1.1'
+    compileOnly name: 'Lands-6.28.13'
     compileOnly name: 'BSkyBlock-1.14.3'
     compileOnly name: 'BentoBox-1.15.5'
     compileOnly name: 'UltraMinions_1_13+'
+    compileOnly name: 'SuperiorSkyblock2-2022.9'
     
     // CraftMania
-    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.6.2.1'
+    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version: '2.9'
 }
